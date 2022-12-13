@@ -34,10 +34,10 @@
                                 @csrf
 
                                 <div class="col-12">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control @error('gallery_name') is-invalid @enderror" name="gallery_name" value="{{ old('gallery_name') }}" required autofocus />
+                                    <label class="form-label">Category Name</label>
+                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}" required autofocus />
                                     <span>The name is how it appears on your site.</span>
-                                    @error('gallery_name')
+                                    @error('category_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{$message}}</strong>
                                     </span>
@@ -46,19 +46,19 @@
 
                                 <div class="col-12">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control" rows="4" cols="4" name="gallery_meta_description" placeholder="gallery SEO Description"></textarea>
+                                    <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="category SEO Description"></textarea>
                                     <span>The description is not prominent by default; however, some themes may show it.</span>
                                 </div>
 
                                 <div class="col-12">
                                     <h5>SEO TAG</h5>
                                     <label class="form-label">Focus Keyword</label>
-                                    <input type="text" class="form-control" name="gallery_meta_keyword" value="{{ old('meta_keyword') }}" placeholder="Bangladesh, Dhaka" />
+                                    <input type="text" class="form-control" name="category_meta_keyword" value="{{ old('category_meta_keyword') }}" placeholder="Bangladesh, Dhaka" />
                                 </div>
 
                                 <div class="col-12">
                                     <label class="form-label">SEO Description</label>
-                                    <textarea class="form-control" rows="4" cols="4" name="meta_description" placeholder="SEO Description"></textarea>
+                                    <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="SEO Description"></textarea>
                                 </div>
 
                                 <div>
