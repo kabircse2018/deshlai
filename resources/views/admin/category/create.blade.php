@@ -24,7 +24,7 @@
 
     <div class="card">
         <div class="card-header py-3">
-            <h6 class="mb-0">Add Ne Category</h6>
+            <h6 class="mb-0">Add New Category</h6>
         </div>
         <div class="card-body">
             <div class="row">

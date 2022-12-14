@@ -49,11 +49,7 @@
                                 @foreach($category_data as $category_item)
                                     <tr>
                                         <td><input class="form-check-input" type="checkbox"></td>
-                                        <td>
-                                          {{ $category_item->category_name }}
-                                            <span>--Subcategory</span>
-
-                                        </td>
+                                        <td>{{ $category_item->category_name }}</td>
                                         <td>{{ $category_item->category_slug }}</td>
 
                                         @if (is_null($category_item->category_meta_keyword))

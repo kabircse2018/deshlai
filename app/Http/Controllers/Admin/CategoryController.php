@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -22,7 +23,8 @@ class CategoryController extends Controller
     public function index()
     {
         $category_data = DB::table('categories')->get();
-        return view('admin.category.index', compact('category_data'));
+        $subcategory_data = Subcategory::all();
+        return view('admin.category.index', compact('category_data','subcategory_data'));
     }
 
 
@@ -80,6 +82,9 @@ class CategoryController extends Controller
 //__Update Category__//
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'category_name' => 'required|unique:categories',
+        ]);
         $category_data = Category::find($id);
         $category_data->category_name = $request->category_name;
         $category_data->category_slug = Str::of($request->category_name)->slug('-');
