@@ -24,7 +24,7 @@
 
     <div class="card">
         <div class="card-header py-3">
-            <h6 class="mb-0">Add New Category</h6>
+            <h6 class="mb-0">Add Category</h6>
         </div>
         <div class="card-body">
             <div class="row">
@@ -32,12 +32,13 @@
                 <div class="col-12 col-lg-12 d-flex">
                     <div class="card border shadow-none w-100">
                         <div class="card-body">
-                            <form class="row g-3" method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                            <form class="row g-3" method="POST" action="{{ route('category.update', $category_data->id) }}" enctype="multipart/form-data">
                                 @csrf
+                                @method('put')
 
                                 <div class="col-12">
                                     <label class="form-label">Category Name</label>
-                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}" autofocus />
+                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ $category_data->category_name}}" autofocus />
                                     @error('category_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
@@ -49,25 +50,25 @@
                                 <div class="col-12">
                                     <h5>SEO TAG</h5>
                                     <label class="form-label">Focus Keyword</label>
-                                    <input type="text" class="form-control" name="category_meta_keyword" value="{{ old('category_meta_keyword') }}" placeholder="Bangladesh, Dhaka" />
+                                    <input type="text" class="form-control" name="category_meta_keyword" value="{{ $category_data->category_meta_keyword}}" placeholder="Bangladesh, Dhaka" />
                                 </div>
 
                                 <div class="col-12">
                                     <label class="form-label">SEO Description</label>
-                                    <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="SEO Description"></textarea>
+                                    <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="SEO Description">{{ $category_data->category_meta_description}}</textarea>
                                 </div>
 
                                 <div>
                                     <label class="form-label">Menu Status</label>
                                     <select class="form-group form-control" name="status">
-                                        <option value="1">Published</option>
-                                        <option value="0">Save Draft</option>
+                                        <option value="1" {{ $category_data->status == 1 ?  'selected' : ''}}>Published</option>
+                                        <option value="0" {{ $category_data->status == 0 ?  'selected' : ''}}>Save Draft</option>
                                     </select>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Save New Category</button>
+                                        <button type="submit" class="btn btn-primary">Update Category</button>
                                     </div>
                                 </div>
                             </form>

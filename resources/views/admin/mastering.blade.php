@@ -15,7 +15,7 @@
   <link href="{{ asset('public/admin')}}/css/bootstrap-extended.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/css/style.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/css/icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+  {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"> --}}
   <link rel="stylesheet" href="{{ asset('public/admin')}}/plugins/bootstrap-icons%401.9.1/font/bootstrap-icons.css">
 
   <!--Theme Styles-->
