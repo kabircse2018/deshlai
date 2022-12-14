@@ -17,6 +17,7 @@ class Category extends Model
         'category_meta_description',
         'status',
         'created_by',
+        'created_at',
 
     ];
 

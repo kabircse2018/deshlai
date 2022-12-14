@@ -1,4 +1,6 @@
-@extends('admin.mastering') @section('content')
+@extends('admin.mastering')
+
+@section('content')
 <!--start content-->
 <main class="page-content">
     <!--breadcrumb-->
@@ -15,7 +17,7 @@
             </nav>
         </div>
         <div class="ms-auto">
-            <a href="{{ route('category.index') }}" class="btn btn-sm btn-primary">Back</a>
+            <a href="{{ route('category.index') }}" class="btn btn-sm btn-primary">All Category View</a>
         </div>
     </div>
     <!--end breadcrumb-->
@@ -30,24 +32,18 @@
                 <div class="col-12 col-lg-12 d-flex">
                     <div class="card border shadow-none w-100">
                         <div class="card-body">
-                            <form class="row g-3" method="POST" action="{{ url('admin/gallery/store') }}" enctype="multipart/form-data">
+                            <form class="row g-3" method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="col-12">
                                     <label class="form-label">Category Name</label>
-                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}" required autofocus />
-                                    <span>The name is how it appears on your site.</span>
+                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}" autofocus />
                                     @error('category_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{$message}}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{$message}}</strong>
+                                        </span>
                                     @enderror
-                                </div>
-
-                                <div class="col-12">
-                                    <label class="form-label">Description</label>
-                                    <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="category SEO Description"></textarea>
-                                    <span>The description is not prominent by default; however, some themes may show it.</span>
+                                    <span>The name is how it appears on your site.</span>
                                 </div>
 
                                 <div class="col-12">
@@ -63,7 +59,7 @@
 
                                 <div>
                                     <label class="form-label">Menu Status</label>
-                                    <select class="form-group form-control" name="menu_status">
+                                    <select class="form-group form-control" name="status">
                                         <option value="1">Published</option>
                                         <option value="0">Save Draft</option>
                                     </select>
