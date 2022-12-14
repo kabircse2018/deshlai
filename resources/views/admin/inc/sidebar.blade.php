@@ -4,7 +4,7 @@
             <img src="{{ asset('public/admin')}}/images/logo-icon.png" class="logo-icon" alt="logo icon" />
         </div>
         <div>
-            <h4 class="logo-text"><a href="{{ route('admin.dashboard') }}" >Dashboard</a></h4>
+            <h4 class="logo-text">Dashboard</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class="bi bi-list"></i></div>
     </div>
@@ -57,7 +57,7 @@
             <ul>
                 <li><a href="{{ route('category.index') }}"><i class="bi bi-bookmark-check-fill"></i>All Category </a></li>
                 <li><a href="{{ route('category.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Category</a></li>
-                <li><a href="#"><i class="bi bi-bookmark-check-fill"></i>Add New Subcategory</a></li>
+                <li><a href="{{ route('subcategory.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Subcategory</a></li>
                 <li><a href="#"><i class="bi bi-bookmark-check-fill"></i>Add New Childcategory</a></li>
 
             </ul>

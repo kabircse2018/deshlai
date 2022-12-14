@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item">
                         <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
                 </ol>
             </nav>
         </div>
@@ -24,7 +24,7 @@
 
     <div class="card">
         <div class="card-header py-3">
-            <h6 class="mb-0">Add New Category</h6>
+            <h6 class="mb-0">Add New Subcategory</h6>
         </div>
         <div class="card-body">
             <div class="row">
@@ -32,29 +32,27 @@
                 <div class="col-12 col-lg-12 d-flex">
                     <div class="card border shadow-none w-100">
                         <div class="card-body">
-                            <form class="row g-3" method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                            <form class="row g-3" method="POST" action="{{ route('subcategory.store') }}" enctype="multipart/form-data">
                                 @csrf
 
+                                <div>
+                                    <label class="form-label">Select Category*</label>
+                                    <select class="form-control" name="category_id">
+                                        @foreach($categories as $row)
+                                            <option value="{{$row->id}}">{{$row->category_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="col-12">
-                                    <label class="form-label">Category Name</label>
-                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" value="{{ old('category_name') }}" autofocus />
-                                    @error('category_name')
+                                    <label class="form-label">Subcategory Name</label>
+                                    <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" name="subcategory_name" value="{{ old('subcategory_name') }}" autofocus />
+                                    @error('subcategory_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message}}</strong>
                                         </span>
                                     @enderror
                                     <span>The name is how it appears on your site.</span>
-                                </div>
-
-                                <div class="col-12">
-                                    <h5>SEO TAG</h5>
-                                    <label class="form-label">Focus Keyword</label>
-                                    <input type="text" class="form-control" name="category_meta_keyword" value="{{ old('category_meta_keyword') }}" placeholder="Bangladesh, Dhaka" />
-                                </div>
-
-                                <div class="col-12">
-                                    <label class="form-label">SEO Description</label>
-                                    <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="SEO Description"></textarea>
                                 </div>
 
                                 <div>
@@ -67,7 +65,7 @@
 
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Save New Category</button>
+                                        <button type="submit" class="btn btn-primary">Save New Subcategory</button>
                                     </div>
                                 </div>
                             </form>
