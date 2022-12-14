@@ -57,7 +57,7 @@
             <ul>
                 <li><a href="{{ route('category.index') }}"><i class="bi bi-bookmark-check-fill"></i>All Category </a></li>
                 <li><a href="{{ route('category.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Category</a></li>
-                <li><a href="#"><i class="bi bi-bookmark-check-fill"></i>Add New Subcategory</a></li>
+                <li><a href="{{ route('subcategory.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Subcategory</a></li>
                 <li><a href="#"><i class="bi bi-bookmark-check-fill"></i>Add New Childcategory</a></li>
 
             </ul>

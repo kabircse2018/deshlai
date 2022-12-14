@@ -10,6 +10,7 @@ class Subcategory extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
         'subcategory_name',
         'subcategory_slug',
         'subcategory_meta_keyword',
@@ -19,6 +20,12 @@ class Subcategory extends Model
         'created_by',
 
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
 
 
 
