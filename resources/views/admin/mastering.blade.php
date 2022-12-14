@@ -66,7 +66,10 @@
   <script src="{{ asset('public/admin')}}/js/jquery.min.js"></script>
   <script src="{{ asset('public/admin')}}/plugins/simplebar/js/simplebar.min.js"></script>
   <script src="{{ asset('public/admin')}}/plugins/metismenu/js/metisMenu.min.js"></script>
+  {{-- <script src="{{ asset('public/admin')}}/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script> --}}
   <script src="{{ asset('public/admin')}}/js/pace.min.js"></script>
+  <!--app-->
+  <script src="{{ asset('public/admin')}}/js/app.js"></script>
 
   <!--Toaster-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
