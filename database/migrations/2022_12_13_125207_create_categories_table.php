@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('category_slug')->unique()->nullable();
             $table->string('category_meta_keyword')->nullable();
             $table->string('category_meta_description')->nullable();
+            $table->boolean('status')->default(0);
+            $table->string('created_by');
             $table->timestamps();
         });
     }
