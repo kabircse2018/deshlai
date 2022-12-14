@@ -42,31 +42,69 @@ class CategoryController extends Controller
             'category_name' => 'required|unique:categories',
         ]);
 
-        //Query Builder
-        $category_store = DB::table('categories')->insert([
-            'category_name' => $request->category_name,
-            'category_slug' => Str::of($request->category_name)->slug('-'),
-            'category_meta_keyword' => $request->category_meta_keyword,
-            'category_meta_description' => $request->category_meta_description,
-            'status' => $request->status,
-            'created_at' => Carbon::now(),
-            'created_by' => Auth::user()->id,
-        ]);
-        //
-        // $category_store = new Category;
-        // $category_store->category_name = $request->category_name;
+    //Query Builder
+        // $category_store = DB::table('categories')->insert([
+        //     'category_name' => $request->category_name,
+        //     'category_slug' => Str::of($request->category_name)->slug('-'),
+        //     'category_meta_keyword' => $request->category_meta_keyword,
+        //     'category_meta_description' => $request->category_meta_description,
+        //     'status' => $request->status,
+        //     'created_at' => Carbon::now(),
+        //     'created_by' => Auth::user()->id,
+        // ]);
 
+    //__eloquent ORM
+        $category_store = new Category;
+        $category_store->category_name = $request->category_name;
+        $category_store->category_slug = Str::of($request->category_name)->slug('-');
+        $category_store->category_meta_keyword = $request->category_meta_keyword;
+        $category_store->category_meta_description = $request->category_meta_description;
+        $category_store->status = $request->status;
+        $category_store->created_by = Auth::user()->id;
+        $category_store->save();
 
-
-
-
+        $notification = array('message' => 'Category Inserted Successfully', 'alert-type' => 'success' );
+        return redirect()->back()->with($notification);
     }
 
 
 
+//__Category Create__//
+    public function edit($id)
+    {
+        $category_data = Category::find($id);
+        return view('admin.category.edit', compact('category_data'));
+    }
 
 
+//__Update Category__//
+    public function update(Request $request, $id)
+    {
+        $category_data = Category::find($id);
+        $category_data->category_name = $request->category_name;
+        $category_data->category_slug = Str::of($request->category_name)->slug('-');
+        $category_data->category_meta_keyword = $request->category_meta_keyword;
+        $category_data->category_meta_description = $request->category_meta_description;
+        $category_data->status = $request->status;
+        $category_data->created_by = Auth::user()->id;
+        $category_data->update();
 
+        $notification = array('message' => 'Category Updated Successfully', 'alert-type' => 'success' );
+        return redirect()->back()->with($notification);
+
+    }
+
+
+//__Delete Category__//
+    public function delete($id)
+    {
+        $category_data = Category::find($id);
+        $category_data->delete();
+
+        $notification = array('message' => 'Category Deleted Successfully', 'alert-type' => 'success' );
+        return redirect()->back()->with($notification);
+
+    }
 
 
 }

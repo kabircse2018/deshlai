@@ -16,7 +16,7 @@
                     </nav>
                   </div>
                   <div class="ms-auto">
-                    <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary">Add Category</a>
+                    <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary">Add New Category</a>
                   </div>
                 </div>
                 <!--end breadcrumb-->
@@ -50,10 +50,20 @@
                                     <tr>
                                         <td><input class="form-check-input" type="checkbox"></td>
                                         <td>{{ $category_item->category_name }}</td>
-                                        <td>dsfdf</td>
+                                        <td>{{ $category_item->category_slug }}</td>
 
-                                        <td>dfgdf</td>
-                                        <td>dfdfgdsdsdsdsdsdsdsdsdsdsdsfsdddddddddddddddddsdsdsdsdsdsdsdsdsdsdfgdf</td>
+                                        @if (is_null($category_item->category_meta_keyword))
+                                            <td class="text-danger">Add SEO Focus Keyword</td>
+                                        @else
+                                            <td>{{ $category_item->category_meta_keyword }}</td>
+                                        @endif
+
+                                        @if (is_null($category_item->category_meta_description))
+                                            <td class="text-danger">Add SEO Description</td>
+                                        @else
+                                            <td>{{ $category_item->category_meta_description }}</td>
+                                        @endif
+
                                         <td class="text-end">
                                             @if ($category_item->status == '1')
                                                 <button type="button" class="btn btn-success btn-sm">Published</button>
@@ -64,10 +74,10 @@
 
                                       <td>
                                        <div class="d-flex flex-row-reverse gap-2 fs-6">
-                                            <a href="javascript:;" class="btn btn-primary btn-sm" role="button"><i class="bi bi-eye-fill"></i></a>
-                                            <a href="javascript:;" class="btn btn-warning btn-sm" role="button"><i class="bi bi-pencil-fill"></i></a>
-                                            <a href="javascript:;" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash-fill"></i></a>
-                                       </div>
+                                            {{-- <a href="javascript:;" class="btn btn-primary btn-sm" role="button"><i class="bi bi-eye-fill"></i></a> --}}
+                                            <a href="{{ route('category.delete', $category_item->id) }}" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash-fill"></i></a>
+                                            <a href="{{ route('category.edit', $category_item->id) }}" class="btn btn-warning btn-sm" role="button"><i class="bi bi-pencil-fill"></i></a>
+                                        </div>
                                       </td>
                                     </tr>
                                 @endforeach
