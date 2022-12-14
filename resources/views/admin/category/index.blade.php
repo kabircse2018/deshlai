@@ -55,8 +55,11 @@
                                         <td>dfgdf</td>
                                         <td>dfdfgdsdsdsdsdsdsdsdsdsdsdsfsdddddddddddddddddsdsdsdsdsdsdsdsdsdsdfgdf</td>
                                         <td class="text-end">
-                                            <button type="button" class="btn btn-success btn-sm">Published</button>
-                                            <button type="button" class="btn btn-secondary btn-sm">Save Draft</button>
+                                            @if ($category_item->status == '1')
+                                                <button type="button" class="btn btn-success btn-sm">Published</button>
+                                            @else
+                                                <button type="button" class="btn btn-secondary btn-sm">Save Draft</button>
+                                            @endif
                                         </td>
 
                                       <td>

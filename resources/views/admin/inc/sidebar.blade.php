@@ -4,7 +4,7 @@
             <img src="{{ asset('public/admin')}}/images/logo-icon.png" class="logo-icon" alt="logo icon" />
         </div>
         <div>
-            <h4 class="logo-text"><a href="{{ route('admin.dashboard') }}" >Dashboard</a></h4>
+            <h4 class="logo-text">Dashboard</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class="bi bi-list"></i></div>
     </div>
