@@ -49,6 +49,53 @@ class SubcategoryController extends Controller
     }
 
 
+//__Edit__//
+    public function edit($id)
+    {
+        $categories = Category::all();
+        $subcategory_data = Subcategory::find($id);
+        return view('admin.subcategory.edit', compact('categories', 'subcategory_data'));
+    }
+
+
+//__Update__//
+    public function update(Request $request, $id)
+    {
+        $valideted = $request->validate([
+            'subcategory_name' => 'required|unique:subcategories',
+        ]);
+
+        $subcategory_store = Subcategory::find($id);
+        $subcategory_store->category_id = $request->category_id;
+        $subcategory_store->subcategory_name = $request->subcategory_name;
+        $subcategory_store->subcategory_slug = Str::of($request->subcategory_name)->slug('-');
+        $subcategory_store->status = $request->status;
+        $subcategory_store->created_by = Auth::user()->id;
+        $subcategory_store->update();
+
+        $notification = array('message' => 'Subcategory Updated Successfully', 'alert-type' => 'success' );
+        return redirect()->back()->with($notification);
+
+    }
+
+
+//__Delete Category__//
+    public function delete($id)
+    {
+        $category_data = Subcategory::find($id);
+        $category_data->delete();
+
+        $notification = array('message' => 'Subcategory Deleted Successfully', 'alert-type' => 'success' );
+        return redirect()->back()->with($notification);
+
+    }
+
+
+
+
+
+
+
 
 
 }

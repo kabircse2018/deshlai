@@ -20,3 +20,18 @@ Route::post('admin/dashboard/subcategory/store', [App\Http\Controllers\Admin\Sub
 Route::get('admin/dashboard/subcategory/edit/{id}', [App\Http\Controllers\Admin\SubcategoryController::class, 'edit'])->name('subcategory.edit');
 Route::put('admin/dashboard/subcategory/update/{id}', [App\Http\Controllers\Admin\SubcategoryController::class, 'update'])->name('subcategory.update');
 Route::get('admin/dashboard/subcategory/delete/{id}', [App\Http\Controllers\Admin\SubcategoryController::class, 'delete'])->name('subcategory.delete');
+
+//__Childcategory Route__//
+Route::get('admin/dashboard/childcategory/create', [App\Http\Controllers\Admin\ChildcategoryController::class, 'create'])->name('childcategory.create');
+Route::post('admin/dashboard/childcategory/store', [App\Http\Controllers\Admin\ChildcategoryController::class, 'store'])->name('childcategory.store');
+Route::get('admin/dashboard/childcategory/edit/{id}', [App\Http\Controllers\Admin\ChildcategoryController::class, 'edit'])->name('childcategory.edit');
+Route::put('admin/dashboard/childcategory/update/{id}', [App\Http\Controllers\Admin\ChildcategoryController::class, 'update'])->name('childcategory.update');
+Route::get('admin/dashboard/childcategory/delete/{id}', [App\Http\Controllers\Admin\ChildcategoryController::class, 'delete'])->name('childcategory.delete');
+
+//__Tag Route__//
+Route::get('admin/dashboard/tag/index', [App\Http\Controllers\Admin\TagController::class, 'index'])->name('tag.index');
+Route::get('admin/dashboard/tag/create', [App\Http\Controllers\Admin\TagController::class, 'create'])->name('tag.create');
+Route::post('admin/dashboard/tag/store', [App\Http\Controllers\Admin\TagController::class, 'store'])->name('tag.store');
+Route::get('admin/dashboard/tag/edit/{id}', [App\Http\Controllers\Admin\TagController::class, 'edit'])->name('tag.edit');
+Route::put('admin/dashboard/tag/update/{id}', [App\Http\Controllers\Admin\TagController::class, 'update'])->name('tag.update');
+Route::get('admin/dashboard/tag/delete/{id}', [App\Http\Controllers\Admin\TagController::class, 'delete'])->name('tag.delete');

@@ -38,6 +38,7 @@
                                 <div>
                                     <label class="form-label">Select Category*</label>
                                     <select class="form-control" name="category_id">
+                                        <option></option>
                                         @foreach($categories as $row)
                                             <option value="{{$row->id}}">{{$row->category_name}}</option>
                                         @endforeach
