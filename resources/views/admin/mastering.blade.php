@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GNKTEC</title>
   <link rel="icon" href="{{ asset('public/admin')}}/images/favicon-32x32.png" type="image/png" />
+
   <!--plugins-->
   <link href="{{ asset('public/admin')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -54,12 +55,13 @@
         <div class="overlay nav-toggle-icon"></div>
        <!--end overlay-->
 
-        <!--Start Back To Top Button-->
-        <a href="#" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
-        <!--End Back To Top Button-->
+         <!--Start Back To Top Button-->
+         <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+         <!--End Back To Top Button-->
 
   </div>
   <!--end wrapper-->
+
   <!-- Bootstrap bundle JS -->
   <script src="{{ asset('public/admin')}}/js/bootstrap.bundle.min.js"></script>
   <!--plugins-->
