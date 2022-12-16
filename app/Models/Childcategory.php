@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Childcategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
+        'subcategory_id',
         'childcategory_name',
         'childcategory_slug',
         'childcategory_meta_keyword',
@@ -19,6 +22,24 @@ class Childcategory extends Model
         'created_by',
 
     ];
+
+
+    public function category()
+    {
+        return $this->belongs(Category::class, 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongs(Subcategory::class, 'subcategory_id');
+    }
+
+
+
+
+
+
+
 
 
 

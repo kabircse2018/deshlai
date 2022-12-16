@@ -81,6 +81,44 @@
                                       </td>
                                     </tr>
                                 @endforeach
+
+
+                                @foreach($subcategory_data as $subcategory_item)
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>{{ $subcategory_item->subcategory_name }}</td>
+                                    <td>{{ $subcategory_item->subcategory_slug }}</td>
+
+                                    @if (is_null($subcategory_item->subcategory_meta_keyword))
+                                        <td class="text-danger">Add SEO Focus Keyword</td>
+                                    @else
+                                        <td>{{ $subcategory_item->subcategory_meta_keyword }}</td>
+                                    @endif
+
+                                    @if (is_null($subcategory_item->subcategory_meta_description))
+                                        <td class="text-danger">Add SEO Description</td>
+                                    @else
+                                        <td>{{ $subcategory_item->subcategory_meta_description }}</td>
+                                    @endif
+
+                                    <td class="text-end">
+                                        @if ($subcategory_item->status == '1')
+                                            <button type="button" class="btn btn-success btn-sm">Published</button>
+                                        @else
+                                            <button type="button" class="btn btn-secondary btn-sm">Save Draft</button>
+                                        @endif
+                                    </td>
+
+                                  <td>
+                                   <div class="d-flex flex-row-reverse gap-2 fs-6">
+                                        {{-- <a href="javascript:;" class="btn btn-primary btn-sm" role="button"><i class="bi bi-eye-fill"></i></a> --}}
+                                        <a href="{{ route('subcategory.delete', $subcategory_item->id) }}" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash-fill"></i></a>
+                                        <a href="{{ route('subcategory.edit', $subcategory_item->id) }}" class="btn btn-warning btn-sm" role="button"><i class="bi bi-pencil-fill"></i></a>
+                                    </div>
+                                  </td>
+                                </tr>
+                            @endforeach
+
                                   </tbody>
 
                                  </table>
