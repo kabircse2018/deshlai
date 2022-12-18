@@ -35,3 +35,11 @@ Route::post('admin/dashboard/tag/store', [App\Http\Controllers\Admin\TagControll
 Route::get('admin/dashboard/tag/edit/{id}', [App\Http\Controllers\Admin\TagController::class, 'edit'])->name('tag.edit');
 Route::put('admin/dashboard/tag/update/{id}', [App\Http\Controllers\Admin\TagController::class, 'update'])->name('tag.update');
 Route::get('admin/dashboard/tag/delete/{id}', [App\Http\Controllers\Admin\TagController::class, 'delete'])->name('tag.delete');
+
+//__Post Route__//
+Route::get('admin/dashboard/post/index', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('post.index');
+Route::get('admin/dashboard/post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('post.create');
+Route::post('admin/dashboard/post/store', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('post.store');
+Route::get('admin/dashboard/post/edit/{id}', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('post.edit');
+Route::put('admin/dashboard/post/update/{id}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('post.update');
+Route::get('admin/dashboard/post/delete/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');

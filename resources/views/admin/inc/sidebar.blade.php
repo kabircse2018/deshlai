@@ -1,11 +1,9 @@
 <aside class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{ asset('public/admin')}}/images/logo-icon.png" class="logo-icon" alt="logo icon" />
+            <img src="{{ asset('public/admin')}}/images/g-tech-point.jpg" class="logo-icon" alt="logo icon" />
         </div>
-        <div>
-            <h4 class="logo-text">Dashboard</h4>
-        </div>
+
         <div class="toggle-icon ms-auto"><i class="bi bi-list"></i></div>
     </div>
     <!--navigation-->
@@ -44,7 +42,7 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="bi bi-pin-fill"></i>Add New</a>
+                    <a href="{{ route('post.create') }}"><i class="bi bi-pin-fill"></i>Add New</a>
                 </li>
             </ul>
         </li>

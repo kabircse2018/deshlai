@@ -15,22 +15,24 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('category_id')->nullable();
-            $table->string('subcategory_id')->nullable();
-            $table->string('childcategory_id')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('subcategory_id')->nullable();
+            $table->integer('childcategory_id')->nullable();
             $table->string('post_title')->nullable();
             $table->string('post_slug')->nullable();
             $table->string('post_description')->nullable();
-            $table->string('user_id');
+            $table->string('author_id');
             $table->string('post_date')->nullable();
             $table->string('post_month')->nullable();
-            $table->string('tag_id');
+            $table->string('tag_id')->nullable();
             $table->string('headline')->nullable();
             $table->string('first_section')->nullable();
             $table->string('first_section_thumbnail')->nullable();
             $table->string('bigthumbnail')->nullable();
-
+            $table->string('image')->default(0)->nullable();
+            $table->string('image_thumbnails')->default(0)->nullable();
             $table->timestamps();
+
         });
     }
 
