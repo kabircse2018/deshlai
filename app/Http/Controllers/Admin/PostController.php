@@ -20,7 +20,13 @@ class PostController extends Controller
 //__Index Method__//
     public function index()
     {
-        # code...
+        $subcategory_data = DB::table('subcategories')
+                            ->leftjoin('categories', 'subcategories.category_id', 'categories.id')
+                            ->get();
+        $post_data = DB::table('posts')->get();
+        dd($subcategory_data);
+
+        return view('admin.posts.index', compact('subcategory_data','post_data'));
     }
 
 //__Create Method__//
@@ -28,18 +34,18 @@ class PostController extends Controller
     {
 
         $category_data = DB::table('categories')->where('status', 1)->get();
-        // $subcategory_data = DB::table('subcategories')
-        //                         ->leftjoin('categories', 'subcategories.category_id', 'categories.id')
-        //                         ->get();
+        $subcategory_data = DB::table('subcategories')
+                                ->leftjoin('categories', 'subcategories.category_id', 'categories.id')
+                                ->get();
 
-        // $childcategory_data = DB::table('childcategories')
-        //                         ->leftjoin('categories', 'childcategories.category_id', 'categories.id')
-        //                         ->leftjoin('subcategories', 'childcategories.subcategory_id', 'subcategories.id')
-        //                         ->get();
+        $childcategory_data = DB::table('childcategories')
+                                ->leftjoin('categories', 'childcategories.category_id', 'categories.id')
+                                ->leftjoin('subcategories', 'childcategories.subcategory_id', 'subcategories.id')
+                                ->get();
 
         $tag_data = DB::table('tags')->get();
 
-        return view('admin.posts.create', compact('category_data','tag_data'));
+        return view('admin.posts.create', compact('category_data','subcategory_data' , 'childcategory_data' , 'tag_data'));
     }
 
 //__Store Method__//
@@ -56,6 +62,8 @@ class PostController extends Controller
         $post_data->category_id = $request->category_id;
         $post_data->subcategory_id = $request->subcategory_id;
         $post_data->childcategory_id = $request->childcategory_id;
+        $post_data->childcategory_id = $request->childcategory_id;
+        $post_data->tag_id = $request->tag_id;
         $post_data->author_id = Auth::user()->id;
 
 
@@ -69,7 +77,7 @@ class PostController extends Controller
         Image::make($img)->fit(200, 170)->save('public/admin/storage/posts/thumbnails/'. $img_name); //image Intervention with crop 800 x 600
         $post_data->image = 'public/admin/storage/posts/'.$img_name;
         $post_data->image_thumbnails = 'public/admin/storage/posts/thumbnails/'.$img_name;
-
+        // return response()->json($post_data);
         $post_data->save();
 
         $notification = array('message' => 'Post Inserted Successfully', 'alert-type' => 'success' );
@@ -81,6 +89,27 @@ class PostController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+//__JSON DATA SUBCATEGORY__//
+    public function getSubcate($category_id)
+    {
+       $sub = DB::table('subcategories')->where('category_id', $category_id)->get();
+       return response()->json($sub);
+    }
+
+//__JSON DATA CHILDCATEGORY__//
+    public function getChildcate($subcategory_id)
+    {
+       $child = DB::table('childcategories')->where('subcategory_id', $subcategory_id)->where('category_id', $subcategory_id)->get();
+       return response()->json($child);
+    }
 
 
 

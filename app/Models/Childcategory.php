@@ -15,11 +15,9 @@ class Childcategory extends Model
         'subcategory_id',
         'childcategory_name',
         'childcategory_slug',
-        'childcategory_meta_keyword',
-        'childcategory_meta_description',
-        'childcategory_meta_description',
         'status',
         'created_by',
+
 
     ];
 

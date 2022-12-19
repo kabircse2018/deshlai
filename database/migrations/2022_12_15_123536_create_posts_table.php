@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('bigthumbnail')->nullable();
             $table->string('image')->default(0)->nullable();
             $table->string('image_thumbnails')->default(0)->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
         });

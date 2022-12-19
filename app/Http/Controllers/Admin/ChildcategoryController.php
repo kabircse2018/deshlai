@@ -38,15 +38,17 @@ class ChildcategoryController extends Controller
             'childcategory_name' => 'required|unique:childcategories',
         ]);
 
+
         $childcategory_store = new Childcategory;
         $childcategory_store->category_id = $request->category_id;
         $childcategory_store->subcategory_id = $request->subcategory_id;
         $childcategory_store->childcategory_name = $request->childcategory_name;
-        $childcategory_store->childcategory_slug = Str::of($request->childcategory_slug)->slug('-');
+        $childcategory_store->childcategory_slug = Str::of($request->childcategory_name)->slug('-');
         $childcategory_store->status = $request->status;
         $childcategory_store->created_by = Auth::user()->id;
-        $childcategory_store->created_by = Carbon::now();
-        dd($childcategory_store);
+        $childcategory_store->created_at = Carbon::now();
+        // return response()->json($childcategory_store);
+        // dd($childcategory_store);
         $childcategory_store->save();
 
         $notification = array('message' => 'Childcategory Inserted Successfully', 'alert-type' => 'success' );

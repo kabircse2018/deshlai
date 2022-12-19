@@ -43,3 +43,7 @@ Route::post('admin/dashboard/post/store', [App\Http\Controllers\Admin\PostContro
 Route::get('admin/dashboard/post/edit/{id}', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('post.edit');
 Route::put('admin/dashboard/post/update/{id}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('post.update');
 Route::get('admin/dashboard/post/delete/{id}', [App\Http\Controllers\Admin\PostController::class, 'delete'])->name('post.delete');
+
+//__JSON DATA SUBCATEGORY__//
+Route::get('admin/dashboard/post/getsubcategory/{category_id}', [App\Http\Controllers\Admin\PostController::class, 'getSubcate']);
+Route::get('admin/dashboard/post/getchildcategory/{subcategory_id}', [App\Http\Controllers\Admin\PostController::class, 'getChildcate']);

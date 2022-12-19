@@ -1,5 +1,5 @@
 @extends('admin.mastering')
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @section('content')
 <!--start content-->
 <main class="page-content">
@@ -69,7 +69,19 @@
                           <div class="row g-3">
                             <div class="col-12">
                                 <label class="form-label">Select Category</label>
-                                <select class="form-select" name="subcategory_id">
+                                <select class="form-select" name="category_id">
+                                        <option disabled selected>Choose Category</option>
+                                        @foreach ($category_data as $category_item)
+
+                                                <option class="text-info" value="{{ $category_item->id }}">{{ $category_item->category_name }}</option>
+
+                                        @endforeach
+                                </select>
+                            </div>
+
+                            {{-- <div class="col-12">
+                                <label class="form-label">Select Category</label>
+                                <select class="form-select" name="category_id" name="subcategory_id" name="childcategory_id">
                                         <option disabled selected>Choose Category</option>
                                         @foreach ($category_data as $category_item)
                                             @php
@@ -87,20 +99,22 @@
                                                 @endforeach
                                         @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
-                            {{-- <div class="col-12">
+                            <div class="col-12">
                                 <label class="form-label">Select Subcategory</label>
-                                <select class="form-select" name="subcategory_id">
+                                <select class="form-select" name="subcategory_id" id="subcategory_id">
+                                    <option disabled selected>==Select Subcategory==</option>
                                   @foreach ($subcategory_data as $subcategory_item)
-                                        <option value="{{ $subcategory_item->id }}">{{ $subcategory_item->subcategory_name }}</option>
+                                        <option value="{{ $subcategory_item->id}}">{{ $subcategory_item->subcategory_name }}</option>
                                   @endforeach
                                 </select>
                             </div>
-
+{{--
                             <div class="col-12">
                                 <label class="form-label">Select Childcategory</label>
-                                <select class="form-select" name="childcategory_id">
+                                <select class="form-select" name="childcategory_id" id="childcategory_id">
+                                    <option disabled selected>==Select Childcategory==</option>
                                   @foreach ($childcategory_data as $childcategory_item)
                                         <option value="{{ $childcategory_item->id }}">{{ $childcategory_item->childcategory_name }}</option>
                                   @endforeach
@@ -109,7 +123,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Tags</label>
-                                <select class="multiple-select" data-placeholder="Choose anything" multiple="multiple">
+                                <select class="multiple-select" data-placeholder="Choose anything" multiple="multiple" name="tag_id">
                                     @foreach ($tag_data as $tag_item)
                                         <option value="{{ $tag_item->id }}">{{ $tag_item->tag_name }}</option>
                                     @endforeach
@@ -118,9 +132,9 @@
 
                             <div class="col-12">
                                 <label class="form-label">Status</label>
-                                <select class="form-select">
-                                  <option>Published</option>
-                                  <option>Draft</option>
+                                <select class="form-select" name="status">
+                                  <option value="1">Published</option>
+                                  <option value="0">Draft</option>
                                 </select>
                             </div>
 
@@ -143,5 +157,61 @@
       <!--end row-->
 
   </main>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+          $('select[name="category_id"]').on('change', function(){
+              var category_id = $(this).val();
+              if(category_id) {
+                  $.ajax({
+                      url: "{{  url('admin/dashboard/post/getsubcategory/') }}/"+category_id,
+                      type:"GET",
+                      dataType:"json",
+                      success:function(data) {
+                        // console.log($data);
+                         $("#subcategory_id").empty();
+                               $.each(data,function(key,value){
+                                   $("#subcategory_id").append('<option value="'+value.id+'">'+value.subcategory_name+'</option>');
+                               });
+                      },
+
+                  });
+              } else {
+                  alert('danger');
+              }
+          });
+      });
+ </script>
+
+
+{{--
+<script type="text/javascript">
+    $(document).ready(function() {
+          $('select[name="subcategory_id"]').on('change', function(){
+              var subcategory_id = $(this).val();
+              if(subcategory_id) {
+                  $.ajax({
+                      url: "{{  url('admin/dashboard/post/getchildcategory/') }}/"+subcategory_id,
+                      type:"GET",
+                      dataType:"json",
+                      success:function(data) {
+                        // console.log($data);
+                         $("#childcategory_id").empty();
+                               $.each(data,function(key,value){
+                                   $("#childcategory_id").append('<option value="'+value.id+'">'+value.childcategory_name+'</option>');
+                               });
+                      },
+
+                  });
+              } else {
+                  alert('danger');
+              }
+          });
+      });
+ </script> --}}
+
+
+
 <!--end page main-->
 @endsection

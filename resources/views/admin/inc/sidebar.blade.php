@@ -38,7 +38,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="#"><i class="bi bi-pin-fill"></i>All Post </a>
+                    <a href="{{ route('post.index') }}"><i class="bi bi-pin-fill"></i>All Post </a>
                 </li>
 
                 <li>
@@ -56,7 +56,7 @@
                 <li><a href="{{ route('category.index') }}"><i class="bi bi-bookmark-check-fill"></i>All Category </a></li>
                 <li><a href="{{ route('category.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Category</a></li>
                 <li><a href="{{ route('subcategory.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Subcategory</a></li>
-                <li><a href="{{ route('childcategory.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Childcategory</a></li>
+                {{-- <li><a href="{{ route('childcategory.create') }}"><i class="bi bi-bookmark-check-fill"></i>Add New Childcategory</a></li> --}}
 
             </ul>
         </li>
@@ -79,7 +79,7 @@
             </a>
             <ul>
                 <li><a href="{{ route('tag.index') }}"><i class="bi bi-tag-fill"></i>All Tag </a></li>
-                <li><a href="{{ route('tag.create') }}"><i class="bi bi-tag-fill"></i>Add New Tag</a></li>
+                {{-- <li><a href="{{ route('tag.create') }}"><i class="bi bi-tag-fill"></i>Add New Tag</a></li> --}}
             </ul>
         </li>
 
