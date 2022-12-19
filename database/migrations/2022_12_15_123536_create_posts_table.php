@@ -20,13 +20,11 @@ return new class extends Migration
             $table->integer('childcategory_id')->nullable();
             $table->string('post_title')->nullable();
             $table->string('post_slug')->nullable();
-            $table->string('post_description')->nullable();
+            $table->longText('post_description')->nullable();
             $table->string('author_id');
             $table->string('post_date')->nullable();
-            $table->string('post_month')->nullable();
-            $table->string('tag_id')->nullable();
-            $table->string('headline')->nullable();
-            $table->string('first_section')->nullable();
+            $table->boolean('headline')->nullable();
+            $table->boolean('first_section')->nullable();
             $table->string('first_section_thumbnail')->nullable();
             $table->string('bigthumbnail')->nullable();
             $table->string('image')->default(0)->nullable();
