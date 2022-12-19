@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('childcategories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->unsignedBigInteger('subcategory_id');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('subcategory_id')->nullable();
+            $table->foreign('subcategory_id')->references('id')->on('subcategories');
             $table->string('childcategory_name')->unique()->nullable();
             $table->string('childcategory_slug')->unique()->nullable();
             $table->boolean('status')->default(0);

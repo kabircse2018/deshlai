@@ -47,9 +47,9 @@ html.semi-dark .sidebar-wrapper .metismenu ul {
     border: 1px solid #ffffff00;
 }
 
-html.semi-dark .sidebar-wrapper .sidebar-header img {
+/* html.semi-dark .sidebar-wrapper .sidebar-header img {
     filter: invert(0) grayscale(100%) brightness(200%);
-}
+} */
 
 html.semi-dark .sidebar-wrapper .simplebar-scrollbar:before {
 	background: rgba(255, 255, 255, .4)
