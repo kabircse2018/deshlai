@@ -21,7 +21,6 @@
   <link href="{{ asset('public/admin')}}/css/style.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/css/icons.css" rel="stylesheet">
   {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"> --}}
-  <link rel="stylesheet" href="{{ asset('public/admin')}}/plugins/bootstrap-icons%401.9.1/font/bootstrap-icons.css">
 
   <!--Theme Styles-->
   <link href="{{ asset('public/admin')}}/css/dark-theme.css" rel="stylesheet" />
@@ -71,6 +70,7 @@
   <!-- Bootstrap bundle JS -->
   <script src="{{ asset('public/admin')}}/js/bootstrap.bundle.min.js"></script>
   {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <script src="{{ asset('public/admin')}}/js/jquery.min.js"></script>
