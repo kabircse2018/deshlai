@@ -39,7 +39,7 @@
 
                           <div class="col-12">
                             <label class="form-label">Post title</label>
-                            <input type="text" name="post_title" class="form-control @error('post_title') is-invalid @enderror" placeholder="Post title">
+                            <input type="text" value="{{old('post_title')}}" name="post_title" class="form-control @error('post_title') is-invalid @enderror" placeholder="Post title">
 
                             @error('post_title')
                                 <span class="invalid-feedback" role="alert">
@@ -64,8 +64,14 @@
                           <div class="row g-3">
                             <div class="col-12">
                                 <label class="form-label">Feature Image</label>
-                                <input class="form-control" name="image" type="file">
+                                <input class="form-control @error('image') is-invalid @enderror" name="image" type="file">
+                                @error('image')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{$message}}</strong>
+                                  </span>
+                                @enderror
                             </div>
+
                           <div class="row g-3">
                             <div class="col-12">
                                 <label class="form-label">Select Category</label>
@@ -121,15 +127,21 @@
                                 </select>
                             </div> --}}
 
-                            <div class="mb-3">
-                                <label class="form-label">Tags</label>
-                                <select class="multiple-select" data-placeholder="Choose anything" multiple="multiple" name="tag_id">
-                                    @foreach ($tag_data as $tag_item)
-                                        <option value="{{ $tag_item->id }}">{{ $tag_item->tag_name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="col-12">
+                                <label class="form-label">Post Custom Data</label>
+                                <input type="datetime-local" class="form-control" name="post_date" >
                             </div>
 
+                            <div class="col-12 form-check form-switch">
+                                <label class="form-label">Home Slider</label>
+                                <input class="form-check-input" name="headline" type="checkbox" id="mySwitch" name="darkmode" value="1">
+                            </div>
+ 
+                            <div class="col-12 form-check form-switch">
+                                <label class="form-label">Featured Post</label>
+                                <input class="form-check-input" name="first_section" type="checkbox" id="mySwitch" name="darkmode" value="1">
+                            </div>
+                            
                             <div class="col-12">
                                 <label class="form-label">Status</label>
                                 <select class="form-select" name="status">

@@ -53,6 +53,7 @@ class PostController extends Controller
     {
         $validated = $request->validate([
             'post_title' => 'required|unique:posts',
+            'image' => 'required',
         ]);
 
         $post_data = new Post;
@@ -61,9 +62,10 @@ class PostController extends Controller
         $post_data->post_description = $request->post_description;
         $post_data->category_id = $request->category_id;
         $post_data->subcategory_id = $request->subcategory_id;
-        $post_data->childcategory_id = $request->childcategory_id;
-        $post_data->childcategory_id = $request->childcategory_id;
-        $post_data->tag_id = $request->tag_id;
+        $post_data->status = $request->status;
+        $post_data->headline = $request->headline;
+        $post_data->first_section = $request->first_section;
+        $post_data->post_date = $request->post_date;
         $post_data->author_id = Auth::user()->id;
 
 
@@ -76,8 +78,9 @@ class PostController extends Controller
         Image::make($img)->fit(800, 600)->save('public/admin/storage/posts/crop/'. $img_name); //image Intervention with crop 800 x 600
         Image::make($img)->fit(200, 170)->save('public/admin/storage/posts/thumbnails/'. $img_name); //image Intervention with crop 800 x 600
         $post_data->image = 'public/admin/storage/posts/'.$img_name;
+        $post_data->bigthumbnail = 'public/admin/storage/posts/crop/'.$img_name;
         $post_data->image_thumbnails = 'public/admin/storage/posts/thumbnails/'.$img_name;
-        // return response()->json($post_data);
+        // dd($post_data);
         $post_data->save();
 
         $notification = array('message' => 'Post Inserted Successfully', 'alert-type' => 'success' );
