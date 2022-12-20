@@ -146,7 +146,7 @@
                                 <div class="d-flex align-items-center">
                                     <img src="{{ asset('public/admin')}}/images/avatars/avatar-1.png" alt="" class="rounded-circle" width="54" height="54" />
                                     <div class="ms-3">
-                                        <h6 class="mb-0 dropdown-user-name">Admin</h6>
+                                        <h6 class="mb-0 dropdown-user-name">{{ Auth::user()->name }}</h6>
                                         {{-- <small class="mb-0 dropdown-user-designation text-secondary">HR Manager</small> --}}
                                     </div>
                                 </div>

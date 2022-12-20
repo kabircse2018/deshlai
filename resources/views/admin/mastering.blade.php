@@ -21,7 +21,6 @@
   <link href="{{ asset('public/admin')}}/css/style.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/css/icons.css" rel="stylesheet">
   {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"> --}}
-  <link rel="stylesheet" href="{{ asset('public/admin')}}/plugins/bootstrap-icons%401.9.1/font/bootstrap-icons.css">
 
   <!--Theme Styles-->
   <link href="{{ asset('public/admin')}}/css/dark-theme.css" rel="stylesheet" />
@@ -29,10 +28,12 @@
   <link href="{{ asset('public/admin')}}/css/semi-dark.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/css/header-colors.css" rel="stylesheet" />
 
+  <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
   <!--Toaster-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- include summernote css -->
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+ @stack('css')
+
 
 
 </head>
@@ -68,11 +69,14 @@
 
   <!-- Bootstrap bundle JS -->
   <script src="{{ asset('public/admin')}}/js/bootstrap.bundle.min.js"></script>
-  <!--plugins-->
+  {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
   <script src="{{ asset('public/admin')}}/js/jquery.min.js"></script>
   <script src="{{ asset('public/admin')}}/plugins/simplebar/js/simplebar.min.js"></script>
   <script src="{{ asset('public/admin')}}/plugins/metismenu/js/metisMenu.min.js"></script>
-  <script src="{{ asset('public/admin')}}/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+  {{-- <script src="{{ asset('public/admin')}}/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script> --}}
   <script src="{{ asset('public/admin')}}/js/pace.min.js"></script>
   <!--app-->
   <script src="{{ asset('public/admin')}}/js/app.js"></script>
@@ -86,18 +90,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {{-- Toastr Notification Script --}}
 
-<!-- include summernote css/js -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
-  $(document).ready(function() {
-  $('#summernote').summernote();
-  $('#summernote2').summernote();
-  $('#post').summernote({
-    height: 400,
-    focus: true
-  });
-  });
-</script>
+
+  <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
+@stack('js')
 
 
 

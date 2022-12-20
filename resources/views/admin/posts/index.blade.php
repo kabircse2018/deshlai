@@ -16,14 +16,14 @@
                     </nav>
                   </div>
                   <div class="ms-auto">
-                    <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary">Add New Category</a>
+                    <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary">Add New Post</a>
                   </div>
                 </div>
                 <!--end breadcrumb-->
 
                   <div class="card">
                     <div class="card-header py-3">
-                      <h6 class="mb-0">Category Details</h6>
+                      <h6 class="mb-0">Post Details</h6>
                     </div>
                     <div class="card-body">
                        <div class="row">
@@ -41,8 +41,9 @@
                                        <th>Post Desc</th>
                                        <th>Category</th>
                                        <th>Post Date</th>
-                                       <th>Tags</th>
-                                       <th class="text-end">Menu Status</th>
+                                       <th>Featured</th>
+                                       <th>First Section</th>
+                                       <th>Menu Status</th>
                                        <th class="text-end">Action</th>
                                      </tr>
                                    </thead>
@@ -55,28 +56,27 @@
                                             <td>{{ $item->author_id }}</td>
                                             <td><img src="{{ asset($item->image_thumbnails) }}" width="50" height="auto"></td>                                        </td>
                                             <td>{{ $item->post_title }}</td>
-                                            <td>{!! substr($item->post_description, 0, 10) !!}</td>
-                                            @foreach ($subcategory_data as $item)
-                                                <td>{{ $item->category_id }}</td>
-                                            @endforeach
+                                            <td>{!!  substr(strip_tags($item->post_description), 0, 150) !!} </td>
+                                            <td>{{ $item->subcategory_id }}</td>
+                                            <td>{{ $item->post_date }}</td>
+                                            <td>{{ $item->headline }}</td>
+                                            <td>{{ $item->first_section }}</td>
 
 
-                                            <td>{{ $item->created_at }}</td>
-                                            <td>{{ $item->tag_id }}</td>
+
                                             <td>
                                                 <div>
                                                     <button class="btn btn-sm btn-success">{{ $item->status == '0' ? 'Published' : 'Save Draft'}}</button>
                                                 </div>
                                             </td>
 
-
-                                        <td>
-                                        <div class="d-flex flex-row-reverse gap-2 fs-6">
-                                                {{-- <a href="javascript:;" class="btn btn-primary btn-sm" role="button"><i class="bi bi-eye-fill"></i></a> --}}
-                                                <a href="" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash-fill"></i></a>
-                                                <a href="" class="btn btn-warning btn-sm" role="button"><i class="bi bi-pencil-fill"></i></a>
-                                            </div>
-                                        </td>
+                                            <td>
+                                                <div class="d-flex flex-row-reverse gap-2 fs-6">
+                                                    {{-- <a href="javascript:;" class="btn btn-primary btn-sm" role="button"><i class="bi bi-eye-fill"></i></a> --}}
+                                                    <a href="" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash-fill"></i></a>
+                                                    <a href="" class="btn btn-warning btn-sm" role="button"><i class="bi bi-pencil-fill"></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
 

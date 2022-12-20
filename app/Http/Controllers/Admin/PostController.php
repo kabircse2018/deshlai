@@ -20,18 +20,16 @@ class PostController extends Controller
 //__Index Method__//
     public function index()
     {
-        $subcategory_data = DB::table('subcategories')
-                            ->leftjoin('categories', 'subcategories.category_id', 'categories.id')
-                            ->get();
-        $post_data = DB::table('posts')->get();
-        dd($subcategory_data);
 
-        return view('admin.posts.index', compact('subcategory_data','post_data'));
+        $post_data = DB::table('posts')->get();
+        return view('admin.posts.index', compact('post_data'));
     }
 
 //__Create Method__//
     public function create()
     {
+
+        $author = DB::table('users')->get();
 
         $category_data = DB::table('categories')->where('status', 1)->get();
         $subcategory_data = DB::table('subcategories')
@@ -45,12 +43,15 @@ class PostController extends Controller
 
         $tag_data = DB::table('tags')->get();
 
-        return view('admin.posts.create', compact('category_data','subcategory_data' , 'childcategory_data' , 'tag_data'));
+        return view('admin.posts.create', compact('category_data','subcategory_data' , 'childcategory_data' , 'tag_data', 'author'));
     }
 
 //__Store Method__//
     public function store(Request $request)
     {
+
+
+
         $validated = $request->validate([
             'post_title' => 'required|unique:posts',
             'image' => 'required',
@@ -63,24 +64,36 @@ class PostController extends Controller
         $post_data->category_id = $request->category_id;
         $post_data->subcategory_id = $request->subcategory_id;
         $post_data->status = $request->status;
+        $post_data->special_number_status = $request->special_number_status;
         $post_data->headline = $request->headline;
         $post_data->first_section = $request->first_section;
         $post_data->post_date = $request->post_date;
         $post_data->author_id = Auth::user()->id;
+        $post_data->author_custom_post_id = $request->author_custom_post_id;
 
 
 
         //Post Image Intervention
         $post_img_slug = Str::of($request->post_title)->slug('-');
-        $img = $request->image;
-        $img_name = $post_img_slug. '.' . $img->getClientOriginalExtension();
-        Image::make($img)->save('public/admin/storage/posts/original/'. $img_name);//image Intervention without Crop
-        Image::make($img)->fit(800, 600)->save('public/admin/storage/posts/crop/'. $img_name); //image Intervention with crop 800 x 600
-        Image::make($img)->fit(200, 170)->save('public/admin/storage/posts/thumbnails/'. $img_name); //image Intervention with crop 800 x 600
-        $post_data->image = 'public/admin/storage/posts/'.$img_name;
-        $post_data->bigthumbnail = 'public/admin/storage/posts/crop/'.$img_name;
-        $post_data->image_thumbnails = 'public/admin/storage/posts/thumbnails/'.$img_name;
-        // dd($post_data);
+        if($request->img){
+            $img = $request->image;
+            $img_name = $post_img_slug. '.' . $img->getClientOriginalExtension();
+            Image::make($img)->save('public/admin/storage/posts/original/'. $img_name);//image Intervention without Crop
+            Image::make($img)->fit(800, 600)->save('public/admin/storage/posts/crop/'. $img_name); //image Intervention with crop 800 x 600
+            Image::make($img)->fit(200, 170)->save('public/admin/storage/posts/thumbnails/'. $img_name); //image Intervention with crop 800 x 600
+            $post_data->image = 'public/admin/storage/posts/original/'.$img_name;
+            $post_data->bigthumbnail = 'public/admin/storage/posts/crop/'.$img_name;
+            $post_data->image_thumbnails = 'public/admin/storage/posts/thumbnails/'.$img_name;
+        }
+
+        if($request->special_number_image){
+            $special_number_image = $request->special_number_image;
+            $img_name = $post_img_slug. '.' . $special_number_image->getClientOriginalExtension();
+            Image::make($special_number_image)->fit(273, 433)->save('public/admin/storage/posts/special/'. $img_name); //image Intervention with crop 273 x 433
+            $post_data->special_number_image = 'public/admin/storage/posts/special/'.$img_name;
+
+        }
+
         $post_data->save();
 
         $notification = array('message' => 'Post Inserted Successfully', 'alert-type' => 'success' );

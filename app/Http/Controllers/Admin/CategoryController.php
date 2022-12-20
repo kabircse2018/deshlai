@@ -112,4 +112,17 @@ class CategoryController extends Controller
     }
 
 
+
+
+
+
+
+
+
+    public function homeIndex()
+    {
+        return view('admin.home.index');
+    }
+
+
 }
