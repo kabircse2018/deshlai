@@ -33,6 +33,7 @@ class SubcategoryController extends Controller
     {
         $validated = $request->validate([
             'subcategory_name' => 'required|unique:subcategories',
+            'category_id' => 'required',
         ]);
 
     //Query Builder

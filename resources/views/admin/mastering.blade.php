@@ -3,14 +3,18 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GNKTEC</title>
+  <title>G TechPoint</title>
   <link rel="icon" href="{{ asset('public/admin')}}/images/favicon-32x32.png" type="image/png" />
 
   <!--plugins-->
   <link href="{{ asset('public/admin')}}/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+
+  <link href="{{ asset('public/admin')}}/plugins/select2/css/select2.min.css" rel="stylesheet" />
+  <link href="{{ asset('public/admin')}}/plugins/select2/css/select2-bootstrap4.css" rel="stylesheet" />
   <!-- Bootstrap CSS -->
   <link href="{{ asset('public/admin')}}/css/bootstrap.min.css" rel="stylesheet" />
   <link href="{{ asset('public/admin')}}/css/bootstrap-extended.css" rel="stylesheet" />
@@ -72,6 +76,11 @@
   <script src="{{ asset('public/admin')}}/js/pace.min.js"></script>
   <!--app-->
   <script src="{{ asset('public/admin')}}/js/app.js"></script>
+  <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+
+  <!--Select -->
+  <script src="{{ asset('public/admin')}}/plugins/select2/js/select2.min.js"></script>
+  <script src="{{ asset('public/admin')}}/js/form-select2.js"></script>
 
   <!--Toaster-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -83,6 +92,10 @@
   $(document).ready(function() {
   $('#summernote').summernote();
   $('#summernote2').summernote();
+  $('#post').summernote({
+    height: 400,
+    focus: true
+  });
   });
 </script>
 
