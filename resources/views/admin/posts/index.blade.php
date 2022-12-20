@@ -62,8 +62,6 @@
                                             <td>{{ $item->headline }}</td>
                                             <td>{{ $item->first_section }}</td>
 
-
-
                                             <td>
                                                 <div>
                                                     <button class="btn btn-sm btn-success">{{ $item->status == '0' ? 'Published' : 'Save Draft'}}</button>
