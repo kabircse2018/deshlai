@@ -37,13 +37,18 @@
 
                                 <div>
                                     <label class="form-label">Select Category*</label>
-                                    <select class="form-control" name="category_id">
+                                    <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
                                         <option selected disabled>Select Category</option>
 
                                         @foreach($categories as $row)
                                             <option value="{{$row->id}}">{{$row->category_name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('category_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                    @enderror
                                 </div>
 
                                 <div class="col-12">

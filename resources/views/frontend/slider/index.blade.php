@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        @php
+            $slider = DB::table('posts')->where('headline', 1)->get();
+        @endphp
+            {{-- Div Clickable Link Style --}}
+             <style>
+                .link {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                  }
+                </style>
+            {{-- Div Clickable Link Style --}}
+            <div class="col-lg-8" data-animate="fadeInUp" data-animate-delay="0" href="www.reokhotrade.com">
+                <div
+                    id="slider"
+                    class="container inspiro-slider slider-halfscreen dots-creative"
+                    data-height-xs="360"
+                    data-autoplay="2600"
+                    data-animate-in="fadeIn"
+                    data-animate-out="fadeOut"
+                    data-items="1"
+                    data-loop="true"
+                    data-autoplay="true">
+                    @foreach ( $slider as $item)
+
+                    <div class="slide background-image" style="background-image: url({{ asset($item->image) }});" width="890" height="433" alt="{{ $item->post_title }}">
+                        <a href="#"> <span class="link"></span> </a>
+                    </div>
+                    {!!  $item->post_description !!}
+                    @endforeach
+                   </div>
+            </div>
+    </div>
+</div>
+

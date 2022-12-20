@@ -1,6 +1,9 @@
 @extends('admin.mastering')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 @section('content')
+@push('css')
+
+@endpush
 <!--start content-->
 <main class="page-content">
     <!--breadcrumb-->
@@ -63,7 +66,7 @@
                       <div class="card-body">
                           <div class="row g-3">
                             <div class="col-12">
-                                <label class="form-label">Feature Image</label>
+                                <label class="form-label">পোস্ট ফিচার ইমেজ *</label>
                                 <input class="form-control @error('image') is-invalid @enderror" name="image" type="file">
                                 @error('image')
                                   <span class="invalid-feedback" role="alert">
@@ -72,15 +75,27 @@
                                 @enderror
                             </div>
 
+
+
+
+                            <div class="col-12">
+                                <label class="form-label">বিশেষ সংখ্যা ইমেজ <span> vertical image size: 273 x 433 Pixel</span></label>
+                                <input class="form-control" name="special_number_image" type="file">
+
+                            </div>
+
+                            <div class="col-12 form-check form-switch">
+                                <label class="form-label">বিশেষ সংখ্যা</label>
+                                <input class="form-check-input" name="first_section" type="checkbox" id="mySwitch" name="darkmode" value="1">
+                            </div>
+
                           <div class="row g-3">
                             <div class="col-12">
                                 <label class="form-label">Select Category</label>
                                 <select class="form-select" name="category_id">
                                         <option disabled selected>Choose Category</option>
                                         @foreach ($category_data as $category_item)
-
                                                 <option class="text-info" value="{{ $category_item->id }}">{{ $category_item->category_name }}</option>
-
                                         @endforeach
                                 </select>
                             </div>
@@ -116,7 +131,7 @@
                                   @endforeach
                                 </select>
                             </div>
-{{--
+                                {{--
                             <div class="col-12">
                                 <label class="form-label">Select Childcategory</label>
                                 <select class="form-select" name="childcategory_id" id="childcategory_id">
@@ -129,24 +144,40 @@
 
                             <div class="col-12">
                                 <label class="form-label">Post Custom Data</label>
-                                <input type="datetime-local" class="form-control" name="post_date" >
+                                @php
+                                    use Carbon\Carbon;
+                                    $today = Carbon::now()->format('Y-m-d');
+                                @endphp
+                                <input type="date" class="form-control" name="post_date" value="{{ $today }}">
                             </div>
 
                             <div class="col-12 form-check form-switch">
                                 <label class="form-label">Home Slider</label>
                                 <input class="form-check-input" name="headline" type="checkbox" id="mySwitch" name="darkmode" value="1">
                             </div>
- 
+
                             <div class="col-12 form-check form-switch">
                                 <label class="form-label">Featured Post</label>
                                 <input class="form-check-input" name="first_section" type="checkbox" id="mySwitch" name="darkmode" value="1">
                             </div>
-                            
+
+                            <div class="col-12">
+
+
+                                <select class="form-select" name="author_custom_post_id">
+                                    <option disabled selected>==Author Name==</option>
+                                    @foreach ($author as $item)
+                                            <option value="{{ $item->id }}" {{ ($item->id == Auth::user()->name) ? 'selected' : '' }}>{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="col-12">
                                 <label class="form-label">Status</label>
                                 <select class="form-select" name="status">
-                                  <option value="1">Published</option>
+                                 <option disabled selected>==Post Visibility==</option>
                                   <option value="0">Draft</option>
+                                  <option value="1">Published</option>
                                 </select>
                             </div>
 
@@ -171,58 +202,51 @@
   </main>
 
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-          $('select[name="category_id"]').on('change', function(){
-              var category_id = $(this).val();
-              if(category_id) {
-                  $.ajax({
-                      url: "{{  url('admin/dashboard/post/getsubcategory/') }}/"+category_id,
-                      type:"GET",
-                      dataType:"json",
-                      success:function(data) {
-                        // console.log($data);
-                         $("#subcategory_id").empty();
-                               $.each(data,function(key,value){
-                                   $("#subcategory_id").append('<option value="'+value.id+'">'+value.subcategory_name+'</option>');
-                               });
-                      },
 
-                  });
-              } else {
-                  alert('danger');
-              }
-          });
-      });
- </script>
+@push('js')
 
-
-{{--
 <script type="text/javascript">
-    $(document).ready(function() {
-          $('select[name="subcategory_id"]').on('change', function(){
-              var subcategory_id = $(this).val();
-              if(subcategory_id) {
-                  $.ajax({
-                      url: "{{  url('admin/dashboard/post/getchildcategory/') }}/"+subcategory_id,
-                      type:"GET",
-                      dataType:"json",
-                      success:function(data) {
-                        // console.log($data);
-                         $("#childcategory_id").empty();
-                               $.each(data,function(key,value){
-                                   $("#childcategory_id").append('<option value="'+value.id+'">'+value.childcategory_name+'</option>');
-                               });
-                      },
+    $(function() {
+        $('#post').summernote({
+            height: 500,   //set editable area's height
+            codemirror: { // codemirror options
+                theme: 'monokai'
+            }
+            });
+    });
 
-                  });
-              } else {
-                  alert('danger');
-              }
-          });
-      });
- </script> --}}
 
+
+  </script>
+
+
+{{-- Subcategory Fatch Data from Category  --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="category_id"]').on('change', function(){
+                var category_id = $(this).val();
+                if(category_id) {
+                    $.ajax({
+                        url: "{{  url('admin/dashboard/post/getsubcategory/') }}/"+category_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            // console.log($data);
+                            $("#subcategory_id").empty();
+                                $.each(data,function(key,value){
+                                    $("#subcategory_id").append('<option value="'+value.id+'">'+value.subcategory_name+'</option>');
+                                });
+                        },
+
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
+{{-- Subcategory Fatch Data from Category  --}}
+@endpush
 
 
 <!--end page main-->
