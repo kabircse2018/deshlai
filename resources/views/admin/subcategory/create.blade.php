@@ -39,7 +39,6 @@
                                     <label class="form-label">Select Category*</label>
                                     <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
                                         <option selected disabled>Select Category</option>
-
                                         @foreach($categories as $row)
                                             <option value="{{$row->id}}">{{$row->category_name}}</option>
                                         @endforeach

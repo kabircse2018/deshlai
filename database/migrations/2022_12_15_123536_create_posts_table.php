@@ -23,16 +23,17 @@ return new class extends Migration
             $table->longText('post_description')->nullable();
             $table->string('author_id');
             $table->string('post_date')->nullable();
-            $table->boolean('headline')->nullable();
-            $table->boolean('first_section')->nullable();
-            $table->string('first_section_thumbnail')->nullable();
+            $table->boolean('headline')->default('0')->nullable();
+            $table->boolean('first_section')->default('0');
+            $table->string('first_section_thumbnail')->default('0');
             $table->string('bigthumbnail')->nullable();
-            $table->string('image')->default(0)->nullable();
-            $table->string('special_number_image')->default(0)->nullable();
-            $table->string('image_thumbnails')->default(0)->nullable();
-            $table->boolean('status')->default(0);
-            $table->boolean('special_number_status')->default(0)->nullable();
+            $table->string('image')->default('0');
+            $table->string('special_number_image')->default('0')->nullable();
+            $table->string('image_thumbnails')->default('0');
+            $table->boolean('status')->default('0');
+            $table->boolean('special_number_status')->default('0');
             $table->string('author_custom_post_id');
+            $table->string('tag_id')->nullable();
             $table->timestamps();
 
         });

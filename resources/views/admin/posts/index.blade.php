@@ -64,7 +64,7 @@
 
                                             <td>
                                                 <div>
-                                                    <button class="btn btn-sm btn-success">{{ $item->status == '0' ? 'Published' : 'Save Draft'}}</button>
+                                                    <button class="btn btn-sm btn-success">{{ $item->status == '1' ? 'Published' : 'Save Draft'}}</button>
                                                 </div>
                                             </td>
 

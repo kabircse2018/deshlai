@@ -86,7 +86,7 @@
 
                             <div class="col-12 form-check form-switch">
                                 <label class="form-label">বিশেষ সংখ্যা</label>
-                                <input class="form-check-input" name="first_section" type="checkbox" id="mySwitch" name="darkmode" value="1">
+                                <input class="form-check-input" name="special_number_status" type="checkbox" id="mySwitch" name="darkmode" value="1">
                             </div>
 
                           <div class="row g-3">
@@ -162,12 +162,20 @@
                             </div>
 
                             <div class="col-12">
+                                <label class="form-label">Select Tags</label>
+                                <select class="multiple-select" name="tag_id[]" data-placeholder="Choose anything" multiple="multiple">
+                                    @foreach ($tag_data as $item)
+                                        <option value="{{ $item->id }}">{{ $item->tag_name }}</option>
+                                    @endforeach
 
+                                </select>
+                            </div>
 
+                            <div class="col-12">
                                 <select class="form-select" name="author_custom_post_id">
-                                    <option disabled selected>==Author Name==</option>
+
                                     @foreach ($author as $item)
-                                            <option value="{{ $item->id }}" {{ ($item->id == Auth::user()->name) ? 'selected' : '' }}>{{ $item->name }}</option>
+                                            <option value="{{ $item->id }}" {{ ( Auth::user()->id == $item->id) ? 'selected' : '' }}>{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -175,9 +183,8 @@
                             <div class="col-12">
                                 <label class="form-label">Status</label>
                                 <select class="form-select" name="status">
-                                 <option disabled selected>==Post Visibility==</option>
-                                  <option value="0">Draft</option>
-                                  <option value="1">Published</option>
+                                    <option value="1">Published</option>
+                                    <option value="0">Draft</option>
                                 </select>
                             </div>
 
