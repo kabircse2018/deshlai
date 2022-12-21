@@ -14,7 +14,7 @@
 </head>
 <body class="hold-transition login-page" style="background-image: url('{{ asset('public/admin/storage/bg.webp') }}'); background-size: cover;">
 
-<img src="{{ asset('public') }}/admin/storage/kabirtec.webp" class="img-round center elevation-1 m-3" alt="Logo">
+<img src="{{ asset('public') }}/admin/storage/g-tech-point.jpg" class="img-round center elevation-1 m-3" alt="Logo">
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">

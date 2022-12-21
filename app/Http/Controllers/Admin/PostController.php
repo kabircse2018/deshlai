@@ -49,7 +49,8 @@ class PostController extends Controller
 //__Store Method__//
     public function store(Request $request)
     {
-  
+
+
         $validated = $request->validate([
             'post_title' => 'required|unique:posts',
             'image' => 'required',
@@ -66,23 +67,28 @@ class PostController extends Controller
         $post_data->headline = $request->headline;
         $post_data->first_section = $request->first_section;
         $post_data->post_date = $request->post_date;
+
+        if ($request['tag_id']) {
+            $post_data->tag_id = implode(",", $request['tag_id']);
+        }
+
+
         $post_data->author_id = Auth::user()->id;
         $post_data->author_custom_post_id = $request->author_custom_post_id;
 
-
-
-        //Post Image Intervention
         //Post Image Intervention
         $post_img_slug = Str::of($request->post_title)->slug('-');
         $img = $request->image;
         $img_name = $post_img_slug. '.' . $img->getClientOriginalExtension();
         Image::make($img)->save('public/admin/storage/posts/original/'. $img_name);//image Intervention without Crop
+        Image::make($img)->fit(433, 273)->save('public/admin/storage/posts/first_section_thumbnail/'. $img_name); //image Intervention with crop 800 x 600
         Image::make($img)->fit(800, 600)->save('public/admin/storage/posts/crop/'. $img_name); //image Intervention with crop 800 x 600
         Image::make($img)->fit(200, 170)->save('public/admin/storage/posts/thumbnails/'. $img_name); //image Intervention with crop 800 x 600
         $post_data->image = 'public/admin/storage/posts/original/'.$img_name;
         $post_data->bigthumbnail = 'public/admin/storage/posts/crop/'.$img_name;
+        $post_data->first_section_thumbnail = 'public/admin/storage/posts/first_section_thumbnail/'.$img_name;
         $post_data->image_thumbnails = 'public/admin/storage/posts/thumbnails/'.$img_name;
-       
+
 
         if($request->special_number_image){
             $special_number_image = $request->special_number_image;
@@ -91,7 +97,7 @@ class PostController extends Controller
             $post_data->special_number_image = 'public/admin/storage/posts/special/'.$img_name;
 
         }
-        
+
 
         $post_data->save();
 

@@ -46,7 +46,7 @@
                                     <span>The name is how it appears on your site.</span>
                                 </div>
 
-                                <div class="col-12">
+                                {{-- <div class="col-12">
                                     <h5>SEO TAG</h5>
                                     <label class="form-label">Focus Keyword</label>
                                     <input type="text" class="form-control" name="category_meta_keyword" value="{{ old('category_meta_keyword') }}" placeholder="Bangladesh, Dhaka" />
@@ -55,7 +55,7 @@
                                 <div class="col-12">
                                     <label class="form-label">SEO Description</label>
                                     <textarea class="form-control" rows="4" cols="4" name="category_meta_description" placeholder="SEO Description"></textarea>
-                                </div>
+                                </div> --}}
 
                                 <div>
                                     <label class="form-label">Menu Status</label>
