@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('is_admin')->default(0);
             $table->string('phone')->unique()->nullable();
-            $table->string('user_desc')->nullable();
+            $table->longText('user_desc')->nullable();
             $table->string('user_profile')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -31,7 +31,7 @@
                     @foreach ( $slider as $item)
 
                     <div class="slide background-image" style="background-image: url({{ asset($item->image) }});" width="890" height="433" alt="{{ $item->post_title }}">
-                        <a href="#"> <span class="link"></span> </a>
+                        <a href="{{ route('post.single', $item->id) }}"> <span class="link"></span> </a>
                     </div>
                     {{-- {!!  $item->post_description !!} --}}
                     @endforeach
@@ -52,7 +52,7 @@
 
                     @foreach ( $special_number_image as $item)
                     <div class="slide background-image" style="background-image: url({{ asset($item->special_number_image) }});" width="890" height="433" alt="{{ $item->post_title }}">
-                        <a href="#"> <span class="link"></span> </a>
+                        <a href="{{ route('post.single', $item->id) }}"> <span class="link"></span> </a>
                     </div>
                     @endforeach
                     {{-- <div class="slide background-image" style="background-image: url('assest/images/homepages/corporate-v4/images/8.jpg');"></div> --}}
