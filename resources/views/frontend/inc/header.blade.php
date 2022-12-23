@@ -36,7 +36,7 @@
                             @endphp
                             @foreach ($category as $item)
                             <li class="dropdown">
-                                <a href="{{$item->category_slug}}">{{ $item->category_name}}</a>
+                                <a href="{{ url( 'post/'. $item->category_slug )}}">{{ $item->category_name}}</a>
                                 @php
                                     $subcategory = DB::table('subcategories')->where('category_id', $item->id)->where('status', 1)->get();
                                 @endphp

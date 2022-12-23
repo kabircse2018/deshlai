@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('author_id');
             $table->string('post_date')->nullable();
             $table->boolean('headline')->default('0')->nullable();
-            $table->boolean('first_section')->default('0');
+            $table->boolean('first_section')->nullable();
             $table->string('first_section_thumbnail')->default('0');
             $table->string('bigthumbnail')->nullable();
             $table->string('image')->default('0');
