@@ -31,7 +31,7 @@
                     @foreach ( $slider as $item)
 
                     <div class="slide background-image" style="background-image: url({{ asset($item->image) }});" width="890" height="433" alt="{{ $item->post_title }}">
-                        <a href="#"> <span class="link"></span> </a>
+                        <a href=""> <span class="link"></span> </a>
                     </div>
                     {{-- {!!  $item->post_description !!} --}}
                     @endforeach

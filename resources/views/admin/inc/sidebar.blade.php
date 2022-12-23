@@ -2,6 +2,7 @@
     <div class="sidebar-header">
         <div>
             <img src="{{ asset('public/admin')}}/images/g-tech-point.jpg" class="logo-icon" alt="logo icon" />
+
         </div>
 
         <div class="toggle-icon ms-auto"><i class="bi bi-list"></i></div>
