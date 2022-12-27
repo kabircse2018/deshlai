@@ -6,7 +6,7 @@
         <div class="page-title">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">আপনি দেখছেন: <a href="{{ url('/') }}">Home</a> >> dgfdsgf</li>
+                  <li class="breadcrumb-item active" aria-current="page">আপনি দেখছেন: <a href="{{ url('/') }}">হোম </a> >> {{$category->category_slug}}</li>
                 </ol>
             </nav>
         </div>
