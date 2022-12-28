@@ -32,7 +32,7 @@
                     <nav>
                         <ul>
                             @php
-                                $category = DB::table('categories')->where('status', 1)->get();
+                                $category = DB::table('categories')->orderBy('id', 'ASC')->where('status', 1)->get();
                             @endphp
                             @foreach ($category as $item)
                             <li class="dropdown">

@@ -40,13 +40,21 @@ class PostController extends Controller
 
     public function viewPost(string $category_slug,string  $post_slug)
     {
-        $category = DB::table('categories')->where('category_slug', $category_slug)->first();
+        $category = DB::table('categories')
+                        ->where('category_slug', $category_slug)
+                        ->first();
+         
 
         if ($category)
         {
-            $post = DB::table('posts')->where('category_id', $category->id)->where('post_slug', $post_slug)->where('status', 1)->first();
-
-            return view('frontend.section.singlepost', compact('post'));
+            $post = DB::table('posts')
+                        ->where('category_id', $category->id)
+                        ->where('post_slug', $post_slug)
+                        ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
+                        ->where('status', 1)
+                        ->first();
+            
+            return view('frontend.section.singlepost', compact('post', 'category'));
         }
         else
         {

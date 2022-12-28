@@ -10,20 +10,23 @@
                         <div class="post-item-wrap">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                  <li class="breadcrumb-item active" aria-current="page">আপনি দেখছেন: <a href="{{ url('/') }}">Home >> </a></li>
+                                  <li class="breadcrumb-item active" aria-current="page">আপনি দেখছেন: <a href="{{ url('/') }}"> Home  </a> >> {{ $post->post_title}} ...: {{$post->name}}</li>
                                 </ol>
                             </nav>
                             <div class="text-center">
-                                <a class="btn btn-danger"></a>
-                                <h1></h1>
+                                <a class="btn btn-sm btn-danger href="{{ url('post/' . $category->category_name) }}">{{$category->category_name}} </a>
+                                <h1>{{ $post->post_title}} ...: {{$post->name}}</h1>
 
                                 <div class="d-flex">
                                     <ul class=" avatars mx-auto justify-content-center">
-                                            <li><a href="#"><img src="{{ asset('public/admin')}}/images/avatars/avatar-1.png" class="avatar"></a> </li>
+                                        <li>
+                                            <a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar"></a>
+                                        </li>
                                     </ul>
                                 </div>
-                                  <h3><a href=""></a></h3>
-                                  <h3><a href=""></a></h3>
+                                  <h3><a href="">{{ $post->name }}</a></h3>
+                                  <h5>{{ date('M d, Y', strtotime($post->post_date)) }}</h5>
+                                  
                             </div>
                             <div class="post-meta-share d-flex justify-content-center">
                                 <a class="btn btn-sm btn-slide btn-facebook" href="#">
@@ -44,25 +47,12 @@
                                 </a>
                             </div>
 
+                            
                             <div class="post-image">
-                                <a href="#">
-                                    <img alt="" src="" />
-                                </a>
+                                <img alt="" src="{{ asset($post->image) }}" />
                             </div>
                             <div class="post-item-description">
-                               <h2></h2>
-                                <div class="post-meta">
-                                    <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                    <span class="post-meta-comments">
-                                        <a href="#"><i class="fa fa-comments-o"></i>0 Comments</a>
-                                    </span>
-                                    <span class="post-meta-category">
-                                        <a href="#"><i class="fa fa-tag"></i>Lifestyle, Magazine</a>
-                                    </span>
-
-                                </div>
-                                <p></p>
-
+                                {!! $post->post_description !!}
                             </div>
                             <div class="post-tags">
                                 <a href="#">Life</a>
@@ -122,14 +112,10 @@
                                 <div class="col-lg-8">
                                     <div class="form-group text-center">
                                         <ul class=" avatars mx-auto justify-content-center">
-                                            <li><a href="#"><img src="{{ asset('public/admin')}}/images/avatars/avatar-1.png" class="avatar"></a> </li>
+                                            <li><a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar"></a> </li>
                                         </ul>
                                         {{-- <h4>{{$post->author_custom_post_id}}</h4> --}}
-                                        <h5>জন্ম : ১৯৬০, বর্তমান নিবাস : টালিগঞ্জ। বাংলা সাহিত্যে স্নাতকোত্তর, বি,এড।
-                                            শূন্যদশকে লিখতে আসা এবং কৃত্তিবাস প্রতিভাস কবিতাক্যাম্পাস সুতরাং থেকে কবিতার বই প্রকাশিতসমূহ:
-                                            দেবযানীর স্বীকারোক্তি, স্বপ্নিল বর্ণমালা, তৃতীয়া পৃথিবী, আইভরি খাতা, নোনামিঠে জলচিহ্ন,
-                                            রেডিও অ্যাক্টিভ মিনারেল বৃষ্টি, চৌরেখাবতী পিরামিডের অরোরা, স্ট্রবেরিগন্ধার যোজনপথ
-                                        </h5>
+                                        <h5>{{ $post->user_desc }}</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-2"></div>
@@ -143,8 +129,6 @@
                                         <hr>
                                         <h4 class="widget-title">আরোও লেখা পড়ুন</h4>
                                         <hr>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -154,23 +138,38 @@
                 </div>
             </div>
 
+            @php
+                $author_by_post = DB::table('posts')
+                            ->where('category_id', $category->id)
+                            ->leftjoin('categories', 'posts.category_id', 'categories.id')
+                            ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
+                            ->select('posts.*', 'users.name', 'categories.category_name')
+                            // ->select('posts.*', 'categories.category_name')
+                            
+                            ->get();
+           
+                            
+            @endphp
             <div class="sidebar col-lg-12">
                   <div class="carousel" data-items="3">
                     <div class="post-item border">
+                        
                         <div class="post-item-wrap">
+                            @foreach ($author_by_post as $item)
                             <div class="post-image">
-                                {{-- <a href="#"> <img alt="" src="{{ asset($post->image) }}" /></a> --}}
-
-                                <span class="post-meta-category"><a href="#">Lifestyle</a></span>
+                                <a href="#"> <img alt="" src="{{ asset($post->image) }}" /></a>
+                                <span class="post-meta-category"><a href="#">{{ $item->category_name }}</a></span>
                             </div>
                             <div class="post-item-description">
                                 <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
                                 <span class="post-meta-comments">
-                                    <a href="#"><i class="fa fa-comments-o"></i>33 Comments</a>
+                                    <a href="#"><i class="fa fa-comments-o">fghgf</i>33 Comments</a>
                                 </span>
-                                {{-- <h2><a href="#"><p>{!!  substr(strip_tags($post->post_description), 0, 250) !!} </p></a> --}}
+                                <h2><a href="#"><p>{!!  substr(strip_tags($item->post_description), 0, 250) !!} </p></a>
                             </div>
+                            @endforeach
                         </div>
+                        
                     </div>
                 </div>
             </div>
