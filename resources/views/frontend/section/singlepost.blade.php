@@ -10,7 +10,7 @@
                         <div class="post-item-wrap">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                  <li class="breadcrumb-item active" aria-current="page">আপনি দেখছেন: <a href="{{ url('/') }}"> Home  </a> >> {{ $post->post_title}} ...: {{$post->name}}</li>
+                                  <li class="breadcrumb-item active" aria-current="page">আপনি দেখছেন: <a href="{{ url('/') }}">  Home  </a> >> <a href="{{ url('post/' . $category->category_name) }}"> {{$category->category_slug}}</a> >> {{ $post->post_title}} ...: {{$post->name}}</li>
                                 </ol>
                             </nav>
                             <div class="text-center">
@@ -20,7 +20,7 @@
                                 <div class="d-flex">
                                     <ul class=" avatars mx-auto justify-content-center">
                                         <li>
-                                            <a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar"></a>
+                                            <a href="#"><img  src="{{ asset($post->user_profile) }}" class="avatar" style="width: 100px"></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -28,7 +28,9 @@
                                   <h5>{{ date('M d, Y', strtotime($post->post_date)) }}</h5>
                                   
                             </div>
-                            <div class="post-meta-share d-flex justify-content-center">
+                            <div class="sharethis-inline-share-buttons"></div>
+                            <div class="mb-3"></div>
+                            {{-- <div class="post-meta-share d-flex justify-content-center">
                                 <a class="btn btn-sm btn-slide btn-facebook" href="#">
                                     <i class="fab fa-facebook-f"></i>
                                     <span>Facebook</span>
@@ -45,7 +47,7 @@
                                     <i class="icon-mail"></i>
                                     <span>Mail</span>
                                 </a>
-                            </div>
+                            </div> --}}
 
                             
                             <div class="post-image">
@@ -65,6 +67,8 @@
                                 <div class="text-center bg-warning breadcrumb text-dark">
                                     <h5 class="fw-bold"><a href="#">মন্তব্য, এখানে...</a></h5 class="fw-bold">
                                 </div>
+                                
+                                
                                 <div class="respond-comment"></div>
                                 <form class="form-gray-fields">
                                     <div class="row">
@@ -112,7 +116,7 @@
                                 <div class="col-lg-8">
                                     <div class="form-group text-center">
                                         <ul class=" avatars mx-auto justify-content-center">
-                                            <li><a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar"></a> </li>
+                                            <li><a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar" style="width: 100px"></a> </li>
                                         </ul>
                                         {{-- <h4>{{$post->author_custom_post_id}}</h4> --}}
                                         <h5>{{ $post->user_desc }}</h5>
@@ -150,30 +154,66 @@
            
                             
             @endphp
-            <div class="sidebar col-lg-12">
-                  <div class="carousel" data-items="3">
-                    <div class="post-item border">
-                        
-                        <div class="post-item-wrap">
-                            @foreach ($author_by_post as $item)
-                            <div class="post-image">
-                                <a href="#"> <img alt="" src="{{ asset($post->image) }}" /></a>
-                                <span class="post-meta-category"><a href="#">{{ $item->category_name }}</a></span>
-                            </div>
-                            <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
-                                <span class="post-meta-comments">
-                                    <a href="#"><i class="fa fa-comments-o">fghgf</i>33 Comments</a>
-                                </span>
-                                <h2><a href="#"><p>{!!  substr(strip_tags($item->post_description), 0, 250) !!} </p></a>
-                            </div>
-                            @endforeach
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
+
+
+<section id="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="content col-lg-12">
+                @php
+                    $post = DB::table('posts')
+                                ->where('category_id', $category->id)
+                                ->leftjoin('categories', 'posts.category_id', 'categories.id')
+                                ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
+                                ->select('posts.*', 'users.name', 'categories.category_name')
+                                // ->select('posts.*', 'categories.category_name')
+                                ->get();
+                @endphp
+                <div class="carousel" data-items="3">
+                    @foreach ($post as $item)
+
+                    @php
+                        $category_slug = preg_replace('/\s+/u', '-', trim($item->category_name) );
+                      
+                    @endphp
+
+                    <div class="post-item border">
+                        <div class="post-item-wrap">
+                            <div class="post-image">
+                                <a href="#"> <img  alt="" src="{{ asset($item->image) }}" /></a>
+
+                                <span class="post-meta-category"><a href="{{ url('post/' . $category->category_name) }}">{{ $item->category_name }}</a></span>
+                            </div>
+                            <div class="post-item-description">
+                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ date('M d, Y', strtotime($item->post_date)) }}</span>
+                                <span class="post-meta-comments">
+                                    <a href="#"><i class="fa fa-comments-o"></i>0 Comments</a>
+                                </span>
+
+
+                                <h2>
+                                    <a href="{{ url('post/'. $category->category_slug. '/'. $item->post_slug) }}">{{ $item->post_title}} ...: {{$item->name}}</a>
+                                </h2>
+                                <p>Curabitur pulvinar euismod ante, ac sagittis ante posuere ac. Vivamus luctus commodo dolor porta feugiat. Fusce at velit id ligula pharetra laoreet.</p>
+                                <a href="#" class="item-link">Read More <i class="icon-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63af28cbcb51d30019514a14&product=inline-share-buttons&source=platform" async="async"></script>
 @endsection

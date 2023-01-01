@@ -6,8 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="HUMAUN KABIR" />
-        <meta name="description" content="Themeforest Template Polo, html template" />
-        <link rel="icon" type="image/png" href="images/favicon.png" />
+        <meta name="description" content="দেশলাই এর সাথে আমাদের প্রেমের সম্পর্ক। এই যে মজে যাওয়া— এর ভিতর দিয়ে যাত্রা পথে ধূলি, গাছ, বাকল সবকিছুই তার তার ঝিলিক দেয়, তৃষ্ণায় ছটফটানি, বসতে বলে, আমরা দাঁড়াই, আবার হাঁটি, যাত্রাপথ....আমরা থামি কিন্তু থামি না, অপার উৎসাহ ভালবাসায় হাজির হই চর্চার ধারাবাহিক কার্যক্রমে।যাদের ভালবাসা ও সহযোগিতায় আমরা উত্তেজনা অনুভব করি প্রাণ পাই সাহস পাই— সকলকে শুভেচ্ছাজানি, বন্ধুর হাত ছুটে গেলেও ধরাই থাকে।" />
+        <link rel="icon" href="{{ asset('public/frontend')}}/assest/DESHLAI-Logo-favicon.png" type="image/png" />
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Deshlai</title>
         <link href="{{ asset('public/frontend') }}/assest/css/plugins.css" rel="stylesheet" />

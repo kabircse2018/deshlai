@@ -22,7 +22,8 @@ class PostController extends Controller
                         ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
                         ->select('posts.*', 'users.name', 'categories.category_name')
                         // ->select('posts.*', 'categories.category_name')
-                        ->get();
+                        ->orderBy('id', 'DESC')
+                        ->paginate(2);
 
 
             return view('frontend.post.index', compact('post','category'));
@@ -32,9 +33,22 @@ class PostController extends Controller
             return redirect('/');
         }
 
+    }
 
 
 
+    public function ViewSubcategory($id, $subcategory_slug)
+    {   
+        $category = DB::table('categories')->first();
+        $subcategory = DB::table('subcategories')->where('subcategory_slug', $subcategory_slug)->first();
+        $post = DB::table('posts')
+                    ->leftjoin('categories', 'posts.category_id', 'categories.id')
+                    ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
+                    ->select('posts.*', 'users.name', 'categories.category_name')
+                    ->where('subcategory_id', $id)
+                    ->orderBy('id', 'DESC')
+                    ->paginate(2);
+        return view('frontend.post.subcategory.index', compact('post', 'category','subcategory'));
     }
 
 
