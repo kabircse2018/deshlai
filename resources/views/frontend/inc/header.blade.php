@@ -43,7 +43,7 @@
 
                                     <ul class="dropdown-menu">
                                          @foreach ($subcategory as $item)
-                                        <li><a href="{{ URL::to('posts/'. $item->id. '/'. $item->subcategory_slug)}}">{{ $item->subcategory_name}}</a></li>
+                                        <li><a href="{{ URL::to('post/'. $item->id. '/'. $item->subcategory_slug)}}">{{ $item->subcategory_name}}</a></li>
                                         @endforeach
                                     </ul>
 

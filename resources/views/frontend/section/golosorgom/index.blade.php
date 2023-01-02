@@ -3,7 +3,7 @@
             ->leftjoin('subcategories', 'posts.subcategory_id', 'subcategories.id')
             ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
             ->leftjoin('categories', 'posts.category_id', 'categories.id')
-            ->select('posts.*', 'subcategories.subcategory_name', 'users.name', 'categories.category_name')
+            ->select('posts.*', 'subcategories.*', 'users.name', 'categories.*')
             ->where('subcategory_id', 1)
             ->where('first_section', 1)
             ->first();
@@ -27,7 +27,7 @@
                         <h4>| গল্পসরগম</h4>
                     </div>
                     <div>
-                        <h4><a href="{{ URL::to('post/'. $viewfeaturepost->name) }}"> সবপোস্ট </a></h4>
+                        <h4><a href="{{ URL::to('post/'. $viewfeaturepost->category_slug .'/' .$viewfeaturepost->subcategory_slug) }}"> সবপোস্ট </a></h4>
                     </div>
                 </div>
                 <div class="row">
@@ -40,11 +40,15 @@
                     <div class="col-lg-5 col-md-6" data-animate="fadeInUp" data-animate-delay="0">
                         <div class="post-item border">
                             <div class="post-item-wrap">
+                                @php
+                                    $category_slug = preg_replace('/\s+/u', '-', trim($viewfeaturepost->category_name) );
+                                    // $slug = preg_replace('/\s+/u', '-', trim($item->post_title) );
+                                @endphp
                                 <div class="post-image">
                                     <a href="{{ URL::to($viewfeaturepost->post_slug) }}">
                                         <img alt="{{ $viewfeaturepost->post_title }}" src="{{ asset($viewfeaturepost->first_section_thumbnail) }}" />
                                     </a>
-                                    <span class="post-meta-category"><a href="{{ URL::to($viewfeaturepost->post_slug) }}">{{ $viewfeaturepost->subcategory_name }}</a></span>
+                                    <span class="post-meta-category"><a href="{{ url('post/' .$category_slug) }}">{{ $viewfeaturepost->subcategory_name }}</a></span>
                                 </div>
                                 <div class="post-item-description">
                                     <h4><a href="{{ URL::to($viewfeaturepost->post_slug) }}">{{ Str::limit($viewfeaturepost->post_title, 30) }} : {{$viewfeaturepost->name}}</a></h4>

@@ -21,7 +21,7 @@
                                 <div class="d-flex">
                                     <ul class=" avatars mx-auto justify-content-center">
                                         <li>
-                                            <a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar"></a>
+                                            <a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar" style="width: 100px"></a>
                                         </li>
                                     </ul>
                                 </div>
