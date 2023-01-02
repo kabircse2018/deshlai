@@ -102,7 +102,7 @@
                                                 <a href="{{ url($item->post_slug) }}">
                                                     <img alt="{{ $item->post_slug }}" src="{{ asset($item->first_section_thumbnail) }}" />
                                                 </a>
-                                                <span class="post-meta-category"><a href="{{ URL::to('post/'. $subcategory_slug) }}">{{ $item->subcategory_name }}</a></span>
+                                                <span class="post-meta-category"><a href="{{ URL::to('posts/'. $item->id. '/'. $item->subcategory_id)}}">{{ $item->subcategory_name }}</a></span>
                                             </div>
                                             <div class="post-item-description">
                                                 <h4><a href="{{ url($item->post_slug) }}">{{ Str::limit($item->post_title, 30) }}</a></h4>

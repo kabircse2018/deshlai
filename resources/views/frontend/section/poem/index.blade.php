@@ -29,7 +29,7 @@
 
                                 <img alt="{{ $item->category_name }}" src="{{ asset($item->image) }}" />
                             </a>
-                            <span class="post-meta-category"><a href="{{ $category_slug }}">{{ $item->category_name }}</a></span>
+                            <span class="post-meta-category"><a href="{{ url('post/' .$category_slug) }}">{{ $item->category_name }}</a></span>
                         </div>
                         <div class="post-item-description">
                             <h4><a href="{{ url($item->post_slug) }}">{{ Str::limit($item->post_title, 30) }} : {{$item->name}}</a></h4>
