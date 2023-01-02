@@ -84,6 +84,17 @@
             </ul>
         </li>
 
+        <li>
+            <a href="#" class="has-arrow">
+                <div class="parent-icon"><i class="bi bi-tag-fill"></i></div>
+                <div class="menu-title">Ads</div>
+            </a>
+            <ul>
+                <li><a href="{{ route('ads.index') }}"><i class="bi bi-tag-fill"></i>Home Ads</a></li>
+                {{-- <li><a href="{{ route('tag.create') }}"><i class="bi bi-tag-fill"></i>Add New Tag</a></li> --}}
+            </ul>
+        </li>
+
         <li class="menu-label">Administrator</li>
         <li>
             <a class="has-arrow" href="javascript:;">

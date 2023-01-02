@@ -7,6 +7,7 @@
             <div class="content col-lg-12">
                 <div id="blog" class="single-post">
                     <div class="post-item">
+
                         <div class="post-item-wrap">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -14,7 +15,7 @@
                                 </ol>
                             </nav>
                             <div class="text-center">
-                                <a class="btn btn-sm btn-danger href="{{ url('post/' . $category->category_name) }}">{{$category->category_name}} </a>
+                                <a class="btn btn-sm btn-danger" href="#" >{{$category->category_name}} </a>
                                 <h1>{{ $post->post_title}} ...: {{$post->name}}</h1>
 
                                 <div class="d-flex">
@@ -26,7 +27,7 @@
                                 </div>
                                   <h3><a href="">{{ $post->name }}</a></h3>
                                   <h5>{{ date('M d, Y', strtotime($post->post_date)) }}</h5>
-                                  
+
                             </div>
                             <div class="post-meta-share d-flex justify-content-center">
                                 <a class="btn btn-sm btn-slide btn-facebook" href="#">
@@ -47,7 +48,7 @@
                                 </a>
                             </div>
 
-                            
+
                             <div class="post-image">
                                 <img alt="" src="{{ asset($post->image) }}" />
                             </div>
@@ -55,10 +56,13 @@
                                 {!! $post->post_description !!}
                             </div>
                             <div class="post-tags">
-                                <a href="#">Life</a>
-                                <a href="#">Sport</a>
-                                <a href="#">Tech</a>
-                                <a href="#">Travel</a>
+
+                                @php
+                                    $tag = DB::table('tags')->get();
+                                @endphp
+                                @foreach ($tag as $item)
+                                    <a href="#">{{ $item->tag_name }}</a>
+                                @endforeach
                             </div>
 
                             <div class="respond-form" id="respond">
@@ -136,43 +140,54 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            @php
-                $author_by_post = DB::table('posts')
-                            ->where('category_id', $category->id)
-                            ->leftjoin('categories', 'posts.category_id', 'categories.id')
-                            ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
-                            ->select('posts.*', 'users.name', 'categories.category_name')
-                            // ->select('posts.*', 'categories.category_name')
-                            
-                            ->get();
-           
-                            
-            @endphp
-            <div class="sidebar col-lg-12">
-                  <div class="carousel" data-items="3">
+            </div>
+    </div>
+</section>
+
+<section id="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="content col-lg-12">
+                @php
+                    $post = DB::table('posts')
+                                ->where('category_id', $category->id)
+                                ->leftjoin('categories', 'posts.category_id', 'categories.id')
+                                ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
+                                ->select('posts.*', 'users.name', 'categories.category_name')
+                                ->get();
+                @endphp
+                <div class="carousel" data-items="3">
+                    @foreach ($post as $item)
+
                     <div class="post-item border">
-                        
                         <div class="post-item-wrap">
-                            @foreach ($author_by_post as $item)
                             <div class="post-image">
-                                <a href="#"> <img alt="" src="{{ asset($post->image) }}" /></a>
-                                <span class="post-meta-category"><a href="#">{{ $item->category_name }}</a></span>
+                                <a href="{{ $item->post_slug }}"> <img alt="" src="{{ asset($item->image) }}" /></a>
+
+                                <span class="post-meta-category"><a href="{{ url('post/' . $category->category_name) }}">{{ $item->category_name }}</a></span>
                             </div>
                             <div class="post-item-description">
-                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>Jan 21, 2017</span>
+                                <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ date('M d, Y', strtotime($item->post_date)) }}</span>
                                 <span class="post-meta-comments">
-                                    <a href="#"><i class="fa fa-comments-o">fghgf</i>33 Comments</a>
+                                    <a href="#"><i class="fa fa-comments-o"></i>0 Comments</a>
                                 </span>
-                                <h2><a href="#"><p>{!!  substr(strip_tags($item->post_description), 0, 250) !!} </p></a>
+
+
+                                <h2>
+                                    <a href="{{ $item->post_slug }}">{{ $item->post_title}} ...: {{$item->name}}</a>
+                                </h2>
+                                <p>{!!  substr(strip_tags($item->post_description), 0, 500) !!}</p>
                             </div>
-                            @endforeach
                         </div>
-                        
                     </div>
+                    @endforeach
                 </div>
+
+
             </div>
+
+
         </div>
     </div>
 </section>

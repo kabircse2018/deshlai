@@ -84,10 +84,7 @@
 
                             </div>
 
-                            <div class="col-12 form-check form-switch">
-                                <label class="form-label">বিশেষ সংখ্যা</label>
-                                <input class="form-check-input" name="special_number_status" type="checkbox" id="mySwitch" name="darkmode" value="1">
-                            </div>
+
 
                           <div class="row g-3">
                             <div class="col-12">
@@ -152,13 +149,18 @@
                             </div>
 
                             <div class="col-12 form-check form-switch">
-                                <label class="form-label">Home Slider</label>
+                                <label class="form-label">Big Slider</label>
                                 <input class="form-check-input" name="headline" type="checkbox" id="mySwitch" name="darkmode" value="1">
                             </div>
 
                             <div class="col-12 form-check form-switch">
                                 <label class="form-label">Featured Post</label>
                                 <input class="form-check-input" name="first_section" type="checkbox" id="mySwitch" name="darkmode" value="1">
+                            </div>
+
+                            <div class="col-12 form-check form-switch">
+                                <label class="form-label">বিশেষ সংখ্যা</label>
+                                <input class="form-check-input" name="special_number_status" type="checkbox" id="mySwitch" name="darkmode" value="1">
                             </div>
 
                             <div class="col-12">

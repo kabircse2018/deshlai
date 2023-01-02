@@ -39,6 +39,14 @@ Route::get('admin/dashboard/tag/edit/{id}', [App\Http\Controllers\Admin\TagContr
 Route::put('admin/dashboard/tag/update/{id}', [App\Http\Controllers\Admin\TagController::class, 'update'])->name('tag.update');
 Route::get('admin/dashboard/tag/delete/{id}', [App\Http\Controllers\Admin\TagController::class, 'delete'])->name('tag.delete');
 
+//__Ads Route__//
+Route::get('admin/dashboard/ads/index', [App\Http\Controllers\Admin\adsController::class, 'index'])->name('ads.index');
+Route::get('admin/dashboard/ads/create', [App\Http\Controllers\Admin\adsController::class, 'create'])->name('ads.create');
+Route::post('admin/dashboard/ads/store', [App\Http\Controllers\Admin\adsController::class, 'store'])->name('ads.store');
+Route::get('admin/dashboard/ads/edit/{id}', [App\Http\Controllers\Admin\adsController::class, 'edit'])->name('ads.edit');
+Route::put('admin/dashboard/ads/update/{id}', [App\Http\Controllers\Admin\adsController::class, 'update'])->name('ads.update');
+Route::get('admin/dashboard/ads/delete/{id}', [App\Http\Controllers\Admin\adsController::class, 'delete'])->name('ads.delete');
+
 //__Post Route__//
 Route::get('admin/dashboard/post/index', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('post.index');
 Route::get('admin/dashboard/post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('post.create');
