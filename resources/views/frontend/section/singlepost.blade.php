@@ -29,26 +29,8 @@
                                   <h5>{{ date('M d, Y', strtotime($post->post_date)) }}</h5>
 
                             </div>
-                            <div class="post-meta-share d-flex justify-content-center">
-                                <a class="btn btn-sm btn-slide btn-facebook" href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                    <span>Facebook</span>
-                                </a>
-                                <a class="btn btn-sm btn-slide btn-twitter" href="#" data-width="100">
-                                    <i class="fab fa-twitter"></i>
-                                    <span>Twitter</span>
-                                </a>
-                                <a class="btn btn-sm btn-slide btn-instagram" href="#" data-width="118">
-                                    <i class="fab fa-instagram"></i>
-                                    <span>Instagram</span>
-                                </a>
-                                <a class="btn btn-sm btn-slide btn-googleplus" href="mailto:#" data-width="80">
-                                    <i class="icon-mail"></i>
-                                    <span>Mail</span>
-                                </a>
-                            </div>
-
-
+                           <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+                            <div class="mt-3"></div>
                             <div class="post-image">
                                 <img alt="" src="{{ asset($post->image) }}" />
                             </div>
@@ -70,7 +52,7 @@
                                     <h5 class="fw-bold"><a href="#">মন্তব্য, এখানে...</a></h5 class="fw-bold">
                                 </div>
                                 <div class="respond-comment"></div>
-                                <form class="form-gray-fields">
+                                {{-- <form class="form-gray-fields">
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="form-group">
@@ -106,7 +88,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </form> --}}
+
+                                <div class="fb-comments" data-href="https://www.facebook.com/texmartfashion/" data-width="" data-numposts="5"></div>
+
                             </div>
 
 
@@ -151,11 +136,13 @@
             <div class="content col-lg-12">
                 @php
                     $post = DB::table('posts')
-                                ->where('category_id', $category->id)
+
                                 ->leftjoin('categories', 'posts.category_id', 'categories.id')
                                 ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
                                 ->select('posts.*', 'users.name', 'categories.category_name')
+                                ->orderBy('id', "desc")
                                 ->get();
+
                 @endphp
                 <div class="carousel" data-items="3">
                     @foreach ($post as $item)
@@ -191,4 +178,10 @@
         </div>
     </div>
 </section>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0" nonce="7bSuUlNf"></script>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=63af28cbcb51d30019514a14&product=inline-share-buttons' async='async'></script>
+
 @endsection

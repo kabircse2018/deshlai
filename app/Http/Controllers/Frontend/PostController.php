@@ -69,6 +69,15 @@ class PostController extends Controller
     }
 
 
+//__Author By Post__//
+    public function AuthorByPost($author_name)
+    {
+        return view('frontend.Author.index');
+    }
+
+
+
+
 
 
 

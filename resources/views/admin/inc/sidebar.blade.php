@@ -98,18 +98,25 @@
         <li class="menu-label">Administrator</li>
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-lock-fill"></i></div>
-                <div class="menu-title">Authentication</div>
+                <div class="parent-icon"><i class="bi bi-person-lines-fill"></i></div>
+                <div class="menu-title">User</div>
             </a>
             <ul>
-                <li><a href="#" target="_blank"><i class="bi bi-clipboard-check-fill"></i>Forgot Password</a></li>
-                <li><a href="#" target="_blank"><i class="bi bi-x-square"></i>Reset Password</a></li>
+                <li><a href="{{ route('user.create') }}"><i class="bi bi-person-lines-fill"></i>Add User</a></li>
+                <li><a href="{{ route('user.index') }}"><i class="bi bi-person-lines-fill"></i>All User</a></li>
+
             </ul>
         </li>
         <li>
             <a href="#">
                 <div class="parent-icon"><i class="bi bi-person-lines-fill"></i></div>
                 <div class="menu-title">User Profile</div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="parent-icon"><i class="bi bi-person-lines-fill"></i></div>
+                <div class="menu-title">All User</div>
             </a>
         </li>
     </ul>

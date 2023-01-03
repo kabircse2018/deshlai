@@ -24,7 +24,7 @@
 
                     </div>
                     <div class="post-item-description">
-                        <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ $item->post_date }}</span>
+                        <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ date('M d, Y', strtotime($item->post_date)) }}</span>
                         <span class="post-meta-comments">
                             <a href="#"><i class="fa fa-comments-o"></i>0 Comments</a>
                         </span>
