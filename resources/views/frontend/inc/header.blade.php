@@ -9,9 +9,9 @@
 
             <div id="search">
                 <a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></a>
-                <form class="search-form" action="https://inspirothemes.com/polo/search-results-page.html" method="get">
-                    <input class="form-control" name="q" type="text" placeholder="Type & Search..." />
-                    <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
+                <form class="search-form" action="{{ route('search') }}" method="get">
+                    <input class="form-control" name="query" type="text" style="font-size:large" placeholder="টাইপ করুন এবং অনুসন্ধান করুন..." />
+                    <span class="text-muted">টাইপ করা শুরু করুন এবং বন্ধ করতে "এন্টার" বা "ESC" টিপুন</span>
                 </form>
             </div>
 

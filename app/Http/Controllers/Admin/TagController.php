@@ -33,7 +33,7 @@ class TagController extends Controller
 
         $tag_store = DB::table('tags')->insert([
             'tag_name' => $request->tag_name,
-            'tag_slug' => Str::of($request->tag_name)->slug('-'),
+            'tag_slug' => preg_replace('/\s+/u', '-', trim($request->tag_name)),
 
         ]);
 

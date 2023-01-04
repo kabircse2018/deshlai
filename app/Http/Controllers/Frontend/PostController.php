@@ -70,9 +70,16 @@ class PostController extends Controller
 
 
 //__Author By Post__//
-    public function AuthorByPost($author_name)
+    public function AuthorByPost($author_custom_post_id)
     {
-        return view('frontend.Author.index');
+        $post = DB::table('posts')
+                        ->leftjoin('users', 'posts.author_custom_post_id', 'users.id')
+                        ->select('posts.*', 'users.name')
+                        ->where('author_custom_post_id', $author_custom_post_id)
+                        ->get();
+
+
+        return view('frontend.Author.index', compact('post'));
     }
 
 

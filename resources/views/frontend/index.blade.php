@@ -8,6 +8,8 @@
 
 @include('frontend.section.golosorgom.index')
 
+@include('frontend.section.goddodhara.index')
+
 
 
 <!--ads start-->

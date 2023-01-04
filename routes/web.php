@@ -20,5 +20,9 @@ Route::get('/post/{category_slug}', [App\Http\Controllers\Frontend\PostControlle
 Route::get('/{post_slug}', [App\Http\Controllers\Frontend\PostController::class, 'viewPost'])->name('viewpost');
 Route::get('/post/{id}/{subcategory_slug}', [App\Http\Controllers\Frontend\PostController::class, 'ViewSubcategory'])->name('ViewSubcategory');
 
+//__Search by post URL__//
+Route::get('/archive/search', [App\Http\Controllers\Frontend\SearchController::class, 'Search'])->name('search');
+
 //__Author by post URL__//
-Route::get('/{author_name}', [App\Http\Controller\Frontend\PostController::class, 'AuthorByPost']);
+Route::get('/author/{author_custom_post_id}', [App\Http\Controllers\Frontend\PostController::class, 'AuthorByPost'])->name('author');
+

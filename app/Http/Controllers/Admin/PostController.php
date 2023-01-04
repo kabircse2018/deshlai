@@ -58,7 +58,7 @@ class PostController extends Controller
 
         $post_data = new Post;
         $post_data->post_title = $request->post_title;
-        $post_data->post_slug = Str::of($request->post_title)->slug('-');
+        $post_data->post_slug = preg_replace('/\s+/u', '-', trim($request->post_title));
         $post_data->post_description = $request->post_description;
         $post_data->category_id = $request->category_id;
         $post_data->subcategory_id = $request->subcategory_id;

@@ -1400,7 +1400,7 @@ section.dark,
 }
 @media (min-width: 1200px) {
     body.boxed #header .header-inner {
-        max-width: 1200px;
+        max-width: 1500px;
         margin: auto;
     }
     body.modern #header .header-inner > .container {

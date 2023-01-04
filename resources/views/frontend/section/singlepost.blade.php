@@ -21,11 +21,11 @@
                                 <div class="d-flex">
                                     <ul class=" avatars mx-auto justify-content-center">
                                         <li>
-                                            <a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar" style="width: 100px"></a>
+                                            <a href="{{ URL::to('/author'. '/' . $post->author_custom_post_id) }}"><img src="{{ asset($post->user_profile) }}" class="avatar" style="width: 100px"></a>
                                         </li>
                                     </ul>
                                 </div>
-                                  <h3><a href="">{{ $post->name }}</a></h3>
+                                  <h3><a href="{{ URL::to('/author'. '/' . $post->author_custom_post_id) }}">{{ $post->name }}</a></h3>
                                   <h5>{{ date('M d, Y', strtotime($post->post_date)) }}</h5>
 
                             </div>
@@ -101,8 +101,9 @@
                                 <div class="col-lg-8">
                                     <div class="form-group text-center">
                                         <ul class=" avatars mx-auto justify-content-center">
-                                            <li><a href="#"><img src="{{ asset($post->user_profile) }}" class="avatar"></a> </li>
+                                            <li><a href="{{ URL::to('/author'. '/' . $post->author_custom_post_id) }}"><img src="{{ asset($post->user_profile) }}" class="avatar"></a> </li>
                                         </ul>
+                                        <h3><a href="{{ URL::to('/author'. '/' . $post->author_custom_post_id) }}">{{ $post->name }}</a></h3>
                                         {{-- <h4>{{$post->author_custom_post_id}}</h4> --}}
                                         <h5>{{ $post->user_desc }}</h5>
                                     </div>
@@ -155,6 +156,7 @@
                                 <span class="post-meta-category"><a href="{{ url('post/' . $category->category_name) }}">{{ $item->category_name }}</a></span>
                             </div>
                             <div class="post-item-description">
+                                <span class="post-meta-date">{{$item->name}}</span>
                                 <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ date('M d, Y', strtotime($item->post_date)) }}</span>
                                 <span class="post-meta-comments">
                                     <a href="#"><i class="fa fa-comments-o"></i>0 Comments</a>
